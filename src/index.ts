@@ -5,6 +5,7 @@ import { systemContext } from "white-dwarf/src/Core/CoreSetup";
 import { TransformData3D } from "white-dwarf/src/Core/Locomotion/DataComponent/TransformData3D";
 import { PerspectiveCameraData3D } from "white-dwarf/src/Core/Render/DataComponent/PerspectiveCameraData3D";
 import { MainCameraTag } from "white-dwarf/src/Core/Render/TagComponent/MainCameraTag";
+import { WebGLRenderPipelineRegister } from "white-dwarf/src/Core/Render/WebGLRenderPipelineRegister";
 import {
   WorldSerializer,
   IWorldObject,
@@ -14,7 +15,13 @@ import { EditorCamTagAppendSystem } from "white-dwarf/src/Editor/System/EditorCa
 import { Vector3 } from "white-dwarf/src/Mathematics/Vector3";
 
 export const main = () => {
-  systemContext.coreSetup = () => {};
+  systemContext.coreSetup = () => {
+    if (coreRenderContext.mainCanvas) {
+      new WebGLRenderPipelineRegister(coreRenderContext.mainCanvas).register(
+        mainWorld
+      );
+    }
+  };
 
   systemContext.coreStart = async (props: CoreStartProps) => {
     // If in editor mode, deserialize the world.
