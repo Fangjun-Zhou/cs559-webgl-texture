@@ -72,9 +72,9 @@
     });
   };
 
-  // node_modules/events/events.js
+  // white-dwarf/node_modules/events/events.js
   var require_events = __commonJS({
-    "node_modules/events/events.js"(exports, module) {
+    "white-dwarf/node_modules/events/events.js"(exports, module) {
       "use strict";
       var R = typeof Reflect === "object" ? Reflect : null;
       var ReflectApply = R && typeof R.apply === "function" ? R.apply : function ReflectApply2(target, receiver, args) {
@@ -99,22 +99,22 @@
       var NumberIsNaN = Number.isNaN || function NumberIsNaN2(value2) {
         return value2 !== value2;
       };
-      function EventEmitter2() {
-        EventEmitter2.init.call(this);
+      function EventEmitter3() {
+        EventEmitter3.init.call(this);
       }
-      module.exports = EventEmitter2;
+      module.exports = EventEmitter3;
       module.exports.once = once;
-      EventEmitter2.EventEmitter = EventEmitter2;
-      EventEmitter2.prototype._events = void 0;
-      EventEmitter2.prototype._eventsCount = 0;
-      EventEmitter2.prototype._maxListeners = void 0;
+      EventEmitter3.EventEmitter = EventEmitter3;
+      EventEmitter3.prototype._events = void 0;
+      EventEmitter3.prototype._eventsCount = 0;
+      EventEmitter3.prototype._maxListeners = void 0;
       var defaultMaxListeners = 10;
       function checkListener(listener) {
         if (typeof listener !== "function") {
           throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
         }
       }
-      Object.defineProperty(EventEmitter2, "defaultMaxListeners", {
+      Object.defineProperty(EventEmitter3, "defaultMaxListeners", {
         enumerable: true,
         get: function() {
           return defaultMaxListeners;
@@ -126,14 +126,14 @@
           defaultMaxListeners = arg;
         }
       });
-      EventEmitter2.init = function() {
+      EventEmitter3.init = function() {
         if (this._events === void 0 || this._events === Object.getPrototypeOf(this)._events) {
           this._events = /* @__PURE__ */ Object.create(null);
           this._eventsCount = 0;
         }
         this._maxListeners = this._maxListeners || void 0;
       };
-      EventEmitter2.prototype.setMaxListeners = function setMaxListeners(n) {
+      EventEmitter3.prototype.setMaxListeners = function setMaxListeners(n) {
         if (typeof n !== "number" || n < 0 || NumberIsNaN(n)) {
           throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + ".");
         }
@@ -142,13 +142,13 @@
       };
       function _getMaxListeners(that) {
         if (that._maxListeners === void 0)
-          return EventEmitter2.defaultMaxListeners;
+          return EventEmitter3.defaultMaxListeners;
         return that._maxListeners;
       }
-      EventEmitter2.prototype.getMaxListeners = function getMaxListeners() {
+      EventEmitter3.prototype.getMaxListeners = function getMaxListeners() {
         return _getMaxListeners(this);
       };
-      EventEmitter2.prototype.emit = function emit(type) {
+      EventEmitter3.prototype.emit = function emit(type) {
         var args = [];
         for (var i = 1; i < arguments.length; i++)
           args.push(arguments[i]);
@@ -226,11 +226,11 @@
         }
         return target;
       }
-      EventEmitter2.prototype.addListener = function addListener(type, listener) {
+      EventEmitter3.prototype.addListener = function addListener(type, listener) {
         return _addListener(this, type, listener, false);
       };
-      EventEmitter2.prototype.on = EventEmitter2.prototype.addListener;
-      EventEmitter2.prototype.prependListener = function prependListener(type, listener) {
+      EventEmitter3.prototype.on = EventEmitter3.prototype.addListener;
+      EventEmitter3.prototype.prependListener = function prependListener(type, listener) {
         return _addListener(this, type, listener, true);
       };
       function onceWrapper() {
@@ -249,17 +249,17 @@
         state.wrapFn = wrapped;
         return wrapped;
       }
-      EventEmitter2.prototype.once = function once2(type, listener) {
+      EventEmitter3.prototype.once = function once2(type, listener) {
         checkListener(listener);
         this.on(type, _onceWrap(this, type, listener));
         return this;
       };
-      EventEmitter2.prototype.prependOnceListener = function prependOnceListener(type, listener) {
+      EventEmitter3.prototype.prependOnceListener = function prependOnceListener(type, listener) {
         checkListener(listener);
         this.prependListener(type, _onceWrap(this, type, listener));
         return this;
       };
-      EventEmitter2.prototype.removeListener = function removeListener(type, listener) {
+      EventEmitter3.prototype.removeListener = function removeListener(type, listener) {
         var list, events, position, i, originalListener;
         checkListener(listener);
         events = this._events;
@@ -299,8 +299,8 @@
         }
         return this;
       };
-      EventEmitter2.prototype.off = EventEmitter2.prototype.removeListener;
-      EventEmitter2.prototype.removeAllListeners = function removeAllListeners(type) {
+      EventEmitter3.prototype.off = EventEmitter3.prototype.removeListener;
+      EventEmitter3.prototype.removeAllListeners = function removeAllListeners(type) {
         var listeners, events, i;
         events = this._events;
         if (events === void 0)
@@ -352,20 +352,20 @@
           return unwrap ? [evlistener.listener || evlistener] : [evlistener];
         return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
       }
-      EventEmitter2.prototype.listeners = function listeners(type) {
+      EventEmitter3.prototype.listeners = function listeners(type) {
         return _listeners(this, type, true);
       };
-      EventEmitter2.prototype.rawListeners = function rawListeners(type) {
+      EventEmitter3.prototype.rawListeners = function rawListeners(type) {
         return _listeners(this, type, false);
       };
-      EventEmitter2.listenerCount = function(emitter, type) {
+      EventEmitter3.listenerCount = function(emitter, type) {
         if (typeof emitter.listenerCount === "function") {
           return emitter.listenerCount(type);
         } else {
           return listenerCount.call(emitter, type);
         }
       };
-      EventEmitter2.prototype.listenerCount = listenerCount;
+      EventEmitter3.prototype.listenerCount = listenerCount;
       function listenerCount(type) {
         var events = this._events;
         if (events !== void 0) {
@@ -378,7 +378,7 @@
         }
         return 0;
       }
-      EventEmitter2.prototype.eventNames = function eventNames() {
+      EventEmitter3.prototype.eventNames = function eventNames() {
         return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
       };
       function arrayClone(arr, n) {
@@ -444,9 +444,9 @@
     }
   });
 
-  // node_modules/js-file-download/file-download.js
+  // white-dwarf/node_modules/js-file-download/file-download.js
   var require_file_download = __commonJS({
-    "node_modules/js-file-download/file-download.js"(exports, module) {
+    "white-dwarf/node_modules/js-file-download/file-download.js"(exports, module) {
       module.exports = function(data2, filename, mime, bom) {
         var blobData = typeof bom !== "undefined" ? [bom, data2] : [data2];
         var blob = new Blob(blobData, { type: mime || "application/octet-stream" });
@@ -1852,8 +1852,8 @@
   var systemContext = {
     coreSetup: () => {
     },
-    coreStart: () => __async(void 0, null, function* () {
-    }),
+    coreStart: async () => {
+    },
     editorStart: () => {
     }
   };
@@ -1875,14 +1875,14 @@
     mainWorld.execute(timeContext.deltaTime);
     requestAnimationFrame(mainUpdate);
   };
-  var physicsUpdate = () => __async(void 0, null, function* () {
+  var physicsUpdate = async () => {
     while (true) {
       physicsWorld.execute(timeContext.fixedTimeStep);
-      yield new Promise(
+      await new Promise(
         (resolve) => setTimeout(resolve, timeContext.fixedTimeStep * 1e3)
       );
     }
-  });
+  };
   var mainInit = () => {
     timeContext.startTime = Date.now() / 1e3;
     timeContext.currentTime = timeContext.startTime;
@@ -1895,7 +1895,7 @@
     physicsWorld = new World();
   };
 
-  // node_modules/gl-matrix/esm/common.js
+  // white-dwarf/node_modules/gl-matrix/esm/common.js
   var EPSILON = 1e-6;
   var ARRAY_TYPE = typeof Float32Array !== "undefined" ? Float32Array : Array;
   var RANDOM = Math.random;
@@ -1909,7 +1909,7 @@
       return Math.sqrt(y);
     };
 
-  // node_modules/gl-matrix/esm/mat3.js
+  // white-dwarf/node_modules/gl-matrix/esm/mat3.js
   var mat3_exports = {};
   __export(mat3_exports, {
     add: () => add,
@@ -2341,7 +2341,7 @@
   var mul = multiply;
   var sub = subtract;
 
-  // node_modules/gl-matrix/esm/mat4.js
+  // white-dwarf/node_modules/gl-matrix/esm/mat4.js
   var mat4_exports = {};
   __export(mat4_exports, {
     add: () => add2,
@@ -3593,7 +3593,7 @@
   var mul2 = multiply2;
   var sub2 = subtract2;
 
-  // node_modules/gl-matrix/esm/quat.js
+  // white-dwarf/node_modules/gl-matrix/esm/quat.js
   var quat_exports = {};
   __export(quat_exports, {
     add: () => add5,
@@ -3637,7 +3637,7 @@
     str: () => str4
   });
 
-  // node_modules/gl-matrix/esm/vec3.js
+  // white-dwarf/node_modules/gl-matrix/esm/vec3.js
   var vec3_exports = {};
   __export(vec3_exports, {
     add: () => add3,
@@ -4021,7 +4021,7 @@
     };
   }();
 
-  // node_modules/gl-matrix/esm/vec4.js
+  // white-dwarf/node_modules/gl-matrix/esm/vec4.js
   function create4() {
     var out = new ARRAY_TYPE(4);
     if (ARRAY_TYPE != Float32Array) {
@@ -4157,7 +4157,7 @@
     };
   }();
 
-  // node_modules/gl-matrix/esm/quat.js
+  // white-dwarf/node_modules/gl-matrix/esm/quat.js
   function create5() {
     var out = new ARRAY_TYPE(4);
     if (ARRAY_TYPE != Float32Array) {
@@ -4450,7 +4450,7 @@
     };
   }();
 
-  // node_modules/gl-matrix/esm/vec2.js
+  // white-dwarf/node_modules/gl-matrix/esm/vec2.js
   var vec2_exports = {};
   __export(vec2_exports, {
     add: () => add6,
@@ -4962,6 +4962,244 @@
     IComponent.register
   ], TransformData3D);
 
+  // white-dwarf/src/Core/Render/DataComponent/MeshGenerator/IcosphereMeshGeneratorData.ts
+  var IcosphereMeshGeneratorData = class extends Component {
+    constructor() {
+      super(...arguments);
+      this.radius = 1;
+      this.subdivisions = 0;
+      this.flatNormal = false;
+    }
+  };
+  IcosphereMeshGeneratorData.schema = {
+    radius: {
+      type: Types.Number,
+      default: 1
+    },
+    subdivisions: {
+      type: Types.Number,
+      default: 0
+    },
+    flatNormal: {
+      type: Types.Boolean,
+      default: false
+    }
+  };
+  IcosphereMeshGeneratorData = __decorateClass([
+    IComponent.register
+  ], IcosphereMeshGeneratorData);
+
+  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_vert.glsl
+  var default_vert_default = "attribute vec3 vPosition;attribute vec3 vNormal;attribute vec4 vColor;attribute vec2 vTexCoord;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;void main(){fPosition=(uMV*vec4(vPosition,1.0)).xyz;fColor=vColor;fNormal=normalize(uMVn*vNormal);fTexCoord=vTexCoord;gl_Position=uMVP*vec4(vPosition,1.0);}";
+
+  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_frag.glsl
+  var default_frag_default = "precision highp float;uniform mat4 uV;uniform vec3 uDirLight;uniform sampler2D tex1;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;const vec4 ambientColor=vec4(1,0,0,1);const float ambientIntensity=0.1;const float specularExp=128.0;const vec4 dirLightColor=vec4(0.55,0.55,0.44,1);const float dirLightIntensity=1.0;const vec4 pointLightColor=vec4(0,1,0,1);const float pointLightIntensity=1.0;const float pointLightDistance=2.0;const float pointLightRotateSpeed=15.0;const bool useFresnelEffect=true;const vec4 fresnelColor=vec4(1,1,0,1);const float fresnelExp=5.0;const float fresnelThreshold=0.3;vec2 getDiffuseSpecular(vec3 l,vec3 h,vec3 n,float i){float diffuseIntensity=max(0.0,dot(n,l));diffuseIntensity=diffuseIntensity*i;float specularIntensity=max(0.0,pow(max(0.0,dot(n,h)),specularExp));specularIntensity=specularIntensity*i;return vec2(diffuseIntensity,specularIntensity);}void main(){vec4 baseColor=texture2D(tex1,fTexCoord);vec3 n=normalize(fNormal);vec3 e=normalize(-fPosition);vec4 ambientLight=ambientColor*ambientIntensity;vec3 dirLight=(uV*vec4(uDirLight,0)).xyz;vec3 sl=normalize(dirLight);vec3 sh=normalize(e+sl);vec2 sds=getDiffuseSpecular(sl,sh,n,dirLightIntensity);vec4 sunLight=dirLightColor*sds.x;sunLight=sunLight+dirLightColor*sds.y;vec4 color=vec4(0,0,0,1);color=color+baseColor*ambientLight;color=color+baseColor*sunLight;gl_FragColor=baseColor;}";
+
+  // white-dwarf/src/Core/Render/Material.ts
+  var Material = class {
+    constructor(glContext, vertexShaderSource, fragmentShaderSource, attributes = [], uniforms = [], textureSamplers = []) {
+      this.attributes = [];
+      this.uniforms = [];
+      this.textureSamplers = [];
+      this.vertexShader = null;
+      this.fragmentShader = null;
+      this.shaderProgram = null;
+      this.attributeLocations = {};
+      this.uniformLocations = {};
+      this.samplerLocations = {};
+      this.textureBuffers = {};
+      this.glContext = glContext;
+      this.vertexSource = vertexShaderSource;
+      this.fragmentSource = fragmentShaderSource;
+      if (attributes.length) {
+        this.attributes = attributes;
+      }
+      if (uniforms.length) {
+        this.uniforms = uniforms;
+      }
+      if (textureSamplers.length) {
+        this.textureSamplers = textureSamplers;
+      }
+      if (!this.glContext) {
+        return;
+      }
+      this.compile(
+        glContext,
+        vertexShaderSource,
+        fragmentShaderSource,
+        this.attributes,
+        this.uniforms,
+        this.textureSamplers
+      );
+    }
+    compile(glContext, vertexShaderSource, fragmentShaderSource, attributes, uniforms, textureSamplers) {
+      this.vertexShader = glContext.createShader(
+        glContext.VERTEX_SHADER
+      );
+      if (!this.vertexShader) {
+        throw new Error("Failed to create vertex shader");
+      }
+      glContext.shaderSource(this.vertexShader, vertexShaderSource);
+      glContext.compileShader(this.vertexShader);
+      if (!glContext.getShaderParameter(this.vertexShader, glContext.COMPILE_STATUS)) {
+        throw new Error(glContext.getShaderInfoLog(this.vertexShader));
+      }
+      this.fragmentShader = glContext.createShader(
+        glContext.FRAGMENT_SHADER
+      );
+      if (!this.fragmentShader) {
+        throw new Error("Failed to create fragment shader");
+      }
+      glContext.shaderSource(this.fragmentShader, fragmentShaderSource);
+      glContext.compileShader(this.fragmentShader);
+      if (!glContext.getShaderParameter(
+        this.fragmentShader,
+        glContext.COMPILE_STATUS
+      )) {
+        throw new Error(
+          glContext.getShaderInfoLog(this.fragmentShader)
+        );
+      }
+      this.shaderProgram = glContext.createProgram();
+      if (!this.shaderProgram) {
+        throw new Error("Failed to create shader program");
+      }
+      glContext.attachShader(this.shaderProgram, this.vertexShader);
+      glContext.attachShader(this.shaderProgram, this.fragmentShader);
+      glContext.linkProgram(this.shaderProgram);
+      if (!glContext.getProgramParameter(this.shaderProgram, glContext.LINK_STATUS)) {
+        throw new Error("Failed to link shader program");
+      }
+      for (const attribute of attributes) {
+        const location = glContext.getAttribLocation(
+          this.shaderProgram,
+          attribute
+        );
+        this.attributeLocations[attribute] = location;
+        glContext.enableVertexAttribArray(location);
+      }
+      for (const uniform of uniforms) {
+        this.uniformLocations[uniform] = glContext.getUniformLocation(
+          this.shaderProgram,
+          uniform
+        );
+      }
+      for (let i = 0; i < textureSamplers.length; i++) {
+        const element = textureSamplers[i];
+        this.samplerLocations[element] = glContext.getUniformLocation(
+          this.shaderProgram,
+          element
+        );
+        glContext.uniform1i(this.samplerLocations[element], i);
+      }
+      for (let i = 0; i < textureSamplers.length; i++) {
+        const element = textureSamplers[i];
+        this.textureBuffers[element] = glContext.createTexture();
+        this.glContext.activeTexture(this.glContext.TEXTURE0 + i);
+        this.glContext.bindTexture(
+          this.glContext.TEXTURE_2D,
+          this.textureBuffers[element]
+        );
+        this.glContext.texImage2D(
+          this.glContext.TEXTURE_2D,
+          0,
+          this.glContext.RGBA,
+          1,
+          1,
+          0,
+          this.glContext.RGBA,
+          this.glContext.UNSIGNED_BYTE,
+          null
+        );
+      }
+    }
+    use(glContext) {
+      glContext.useProgram(this.shaderProgram);
+    }
+    loadTexture(texture, src) {
+      const image = new Image();
+      image.src = src;
+      image.onload = () => {
+        this.glContext.bindTexture(
+          this.glContext.TEXTURE_2D,
+          this.textureBuffers[texture]
+        );
+        this.glContext.texImage2D(
+          this.glContext.TEXTURE_2D,
+          0,
+          this.glContext.RGBA,
+          this.glContext.RGBA,
+          this.glContext.UNSIGNED_BYTE,
+          image
+        );
+        this.glContext.generateMipmap(this.glContext.TEXTURE_2D);
+        this.glContext.texParameteri(
+          this.glContext.TEXTURE_2D,
+          this.glContext.TEXTURE_MIN_FILTER,
+          this.glContext.LINEAR_MIPMAP_LINEAR
+        );
+        this.glContext.texParameteri(
+          this.glContext.TEXTURE_2D,
+          this.glContext.TEXTURE_WRAP_S,
+          this.glContext.REPEAT
+        );
+        this.glContext.texParameteri(
+          this.glContext.TEXTURE_2D,
+          this.glContext.TEXTURE_WRAP_T,
+          this.glContext.REPEAT
+        );
+      };
+    }
+  };
+  var MaterialDescriptor = class {
+    constructor(textureSamplers = {}, vertexSource = default_vert_default, fragmentSource = default_frag_default) {
+      this.attributes = ["vPosition", "vNormal", "vColor", "vTexCoord"];
+      this.uniforms = ["uM", "uV", "uP", "uMV", "uMVn", "uMVP", "uDirLight"];
+      this.textureSamplers = {};
+      this.vertexSource = vertexSource;
+      this.fragmentSource = fragmentSource;
+      this.textureSamplers = textureSamplers;
+    }
+    copy(m) {
+      this.vertexSource = m.vertexSource;
+      this.fragmentSource = m.fragmentSource;
+      this.attributes = m.attributes;
+      this.uniforms = m.uniforms;
+      this.textureSamplers = m.textureSamplers;
+      return this;
+    }
+    clone() {
+      return new MaterialDescriptor().copy(this);
+    }
+  };
+  var MaterialDescriptorType = createType({
+    name: "MaterialDescriptor",
+    default: new MaterialDescriptor(),
+    copy: copyCopyable,
+    clone: cloneClonable
+  });
+
+  // white-dwarf/src/Core/Render/DataComponent/MeshRenderData3D.ts
+  var MeshRenderData3D = class extends Component {
+  };
+  MeshRenderData3D.schema = {
+    mesh: {
+      type: Types.Ref
+    },
+    meshBuffer: {
+      type: Types.Ref
+    },
+    materialDesc: {
+      type: MaterialDescriptorType
+    },
+    material: {
+      type: Types.Ref
+    }
+  };
+  MeshRenderData3D = __decorateClass([
+    IComponent.register
+  ], MeshRenderData3D);
+
   // white-dwarf/src/Core/Render/DataComponent/PerspectiveCameraData3D.ts
   var PerspectiveCameraData3D = class extends Component {
     constructor() {
@@ -5081,161 +5319,6 @@
   MainCameraTag = __decorateClass([
     IComponent.register
   ], MainCameraTag);
-
-  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_vert.glsl
-  var default_vert_default = "attribute vec3 vPosition;attribute vec3 vNormal;attribute vec4 vColor;attribute vec2 vTexCoord;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;void main(){fPosition=(uMV*vec4(vPosition,1.0)).xyz;fColor=vColor;fNormal=normalize(uMVn*vNormal);fTexCoord=vTexCoord;gl_Position=uMVP*vec4(vPosition,1.0);}";
-
-  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_frag.glsl
-  var default_frag_default = "precision highp float;uniform mat4 uV;uniform vec3 uDirLight;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;const vec4 baseColor=vec4(1,1,1,1);const vec4 ambientColor=vec4(1,0,0,1);const float ambientIntensity=0.1;const float specularExp=128.0;const vec4 dirLightColor=vec4(1,1,0.5,1);const float dirLightIntensity=1.0;const vec4 pointLightColor=vec4(0,1,0,1);const float pointLightIntensity=1.0;const float pointLightDistance=2.0;const float pointLightRotateSpeed=15.0;const bool useFresnelEffect=true;const vec4 fresnelColor=vec4(1,1,0,1);const float fresnelExp=5.0;const float fresnelThreshold=0.3;vec2 getDiffuseSpecular(vec3 l,vec3 h,vec3 n,float i){float diffuseIntensity=max(0.0,dot(n,l));diffuseIntensity=diffuseIntensity*i;float specularIntensity=max(0.0,pow(max(0.0,dot(n,h)),specularExp));specularIntensity=specularIntensity*i;return vec2(diffuseIntensity,specularIntensity);}void main(){vec3 n=normalize(fNormal);vec3 e=normalize(-fPosition);vec4 ambientLight=ambientColor*ambientIntensity;vec3 dirLight=(uV*vec4(uDirLight,0)).xyz;vec3 sl=normalize(dirLight);vec3 sh=normalize(e+sl);vec2 sds=getDiffuseSpecular(sl,sh,n,dirLightIntensity);vec4 sunLight=dirLightColor*sds.x;sunLight=sunLight+dirLightColor*sds.y;vec4 color=vec4(0,0,0,1);color=color+baseColor*ambientLight;color=color+baseColor*sunLight;gl_FragColor=color;}";
-
-  // white-dwarf/src/Core/Render/Material.ts
-  var Material = class {
-    constructor(glContext, vertexShaderSource, fragmentShaderSource, attributes = [], uniforms = [], textureSamplers = []) {
-      this.attributes = [];
-      this.uniforms = [];
-      this.textureSamplers = [];
-      this.vertexShader = null;
-      this.fragmentShader = null;
-      this.shaderProgram = null;
-      this.attributeLocations = {};
-      this.uniformLocations = {};
-      this.samplerLocations = {};
-      this.glContext = glContext;
-      this.vertexSource = vertexShaderSource;
-      this.fragmentSource = fragmentShaderSource;
-      if (attributes.length) {
-        this.attributes = attributes;
-      }
-      if (uniforms.length) {
-        this.uniforms = uniforms;
-      }
-      if (textureSamplers.length) {
-        this.textureSamplers = textureSamplers;
-      }
-      if (!this.glContext) {
-        return;
-      }
-      this.compile(
-        glContext,
-        vertexShaderSource,
-        fragmentShaderSource,
-        this.attributes,
-        this.uniforms,
-        this.textureSamplers
-      );
-    }
-    compile(glContext, vertexShaderSource, fragmentShaderSource, attributes, uniforms, textureSamplers) {
-      this.vertexShader = glContext.createShader(
-        glContext.VERTEX_SHADER
-      );
-      if (!this.vertexShader) {
-        throw new Error("Failed to create vertex shader");
-      }
-      glContext.shaderSource(this.vertexShader, vertexShaderSource);
-      glContext.compileShader(this.vertexShader);
-      if (!glContext.getShaderParameter(this.vertexShader, glContext.COMPILE_STATUS)) {
-        throw new Error(glContext.getShaderInfoLog(this.vertexShader));
-      }
-      this.fragmentShader = glContext.createShader(
-        glContext.FRAGMENT_SHADER
-      );
-      if (!this.fragmentShader) {
-        throw new Error("Failed to create fragment shader");
-      }
-      glContext.shaderSource(this.fragmentShader, fragmentShaderSource);
-      glContext.compileShader(this.fragmentShader);
-      if (!glContext.getShaderParameter(
-        this.fragmentShader,
-        glContext.COMPILE_STATUS
-      )) {
-        throw new Error(
-          glContext.getShaderInfoLog(this.fragmentShader)
-        );
-      }
-      this.shaderProgram = glContext.createProgram();
-      if (!this.shaderProgram) {
-        throw new Error("Failed to create shader program");
-      }
-      glContext.attachShader(this.shaderProgram, this.vertexShader);
-      glContext.attachShader(this.shaderProgram, this.fragmentShader);
-      glContext.linkProgram(this.shaderProgram);
-      if (!glContext.getProgramParameter(this.shaderProgram, glContext.LINK_STATUS)) {
-        throw new Error("Failed to link shader program");
-      }
-      for (const attribute of attributes) {
-        const location = glContext.getAttribLocation(
-          this.shaderProgram,
-          attribute
-        );
-        this.attributeLocations[attribute] = location;
-        glContext.enableVertexAttribArray(location);
-      }
-      for (const uniform of uniforms) {
-        this.uniformLocations[uniform] = glContext.getUniformLocation(
-          this.shaderProgram,
-          uniform
-        );
-      }
-      for (let i = 0; i < textureSamplers.length; i++) {
-        const element = textureSamplers[i];
-        this.samplerLocations[element] = glContext.getUniformLocation(
-          this.shaderProgram,
-          element
-        );
-        glContext.uniform1i(this.samplerLocations[element], i);
-      }
-    }
-    use(glContext) {
-      glContext.useProgram(this.shaderProgram);
-    }
-  };
-  var MaterialDescriptor = class {
-    constructor(vertexSource = default_vert_default, fragmentSource = default_frag_default) {
-      this.attributes = ["vPosition", "vNormal", "vColor", "vTexCoord"];
-      this.uniforms = ["uM", "uV", "uP", "uMV", "uMVn", "uMVP", "uDirLight"];
-      this.textureSamplers = [];
-      this.vertexSource = vertexSource;
-      this.fragmentSource = fragmentSource;
-    }
-    copy(m) {
-      this.vertexSource = m.vertexSource;
-      this.fragmentSource = m.fragmentSource;
-      this.attributes = m.attributes;
-      this.uniforms = m.uniforms;
-      this.textureSamplers = m.textureSamplers;
-      return this;
-    }
-    clone() {
-      return new MaterialDescriptor().copy(this);
-    }
-  };
-  var MaterialDescriptorType = createType({
-    name: "MaterialDescriptor",
-    default: new MaterialDescriptor(),
-    copy: copyCopyable,
-    clone: cloneClonable
-  });
-
-  // white-dwarf/src/Core/Render/DataComponent/MeshRenderData3D.ts
-  var MeshRenderData3D = class extends Component {
-  };
-  MeshRenderData3D.schema = {
-    mesh: {
-      type: Types.Ref
-    },
-    meshBuffer: {
-      type: Types.Ref
-    },
-    materialDesc: {
-      type: MaterialDescriptorType
-    },
-    material: {
-      type: Types.Ref
-    }
-  };
-  MeshRenderData3D = __decorateClass([
-    IComponent.register
-  ], MeshRenderData3D);
 
   // white-dwarf/src/Core/Render/DataComponent/OrthographicCameraData3D.ts
   var OrthographicCameraData3D = class extends Component {
@@ -5515,6 +5598,11 @@
           0,
           0
         );
+        for (let i = 0; i < material.textureBuffers.length; i++) {
+          const texture = material.textureBuffers[i];
+          this.glContext.activeTexture(this.glContext.TEXTURE0 + i);
+          this.glContext.bindTexture(this.glContext.TEXTURE_2D, texture);
+        }
         this.glContext.drawElements(
           this.glContext.TRIANGLES,
           meshBuffer.bufferInfos.triangleIndices.numItems,
@@ -5756,6 +5844,9 @@
       meshRenderData.mesh.addVertexTexCoords([0, 1]);
       meshRenderData.mesh.registerTriangle(20, 21, 22);
       meshRenderData.mesh.registerTriangle(20, 22, 23);
+      for (var i = 0; i < 24; i++) {
+        meshRenderData.mesh.addVertexColor([1, 1, 1, 1]);
+      }
       meshRenderData.mesh.compileBufferToArrays();
     }
   };
@@ -5767,33 +5858,6 @@
       }
     }
   };
-
-  // white-dwarf/src/Core/Render/DataComponent/MeshGenerator/IcosphereMeshGeneratorData.ts
-  var IcosphereMeshGeneratorData = class extends Component {
-    constructor() {
-      super(...arguments);
-      this.radius = 1;
-      this.subdivisions = 0;
-      this.flatNormal = false;
-    }
-  };
-  IcosphereMeshGeneratorData.schema = {
-    radius: {
-      type: Types.Number,
-      default: 1
-    },
-    subdivisions: {
-      type: Types.Number,
-      default: 0
-    },
-    flatNormal: {
-      type: Types.Boolean,
-      default: false
-    }
-  };
-  IcosphereMeshGeneratorData = __decorateClass([
-    IComponent.register
-  ], IcosphereMeshGeneratorData);
 
   // white-dwarf/src/Core/Render/System/MeshGeneratorSystems/IcosphereMeshGeneratorSystem.ts
   var IcosphereMeshGeneratorSystem = class extends System {
@@ -5842,6 +5906,9 @@
         meshRenderData.mesh.addVertexPosition(v1);
         meshRenderData.mesh.addVertexPosition(v2);
         meshRenderData.mesh.addVertexPosition(v3);
+        for (let j = 0; j < 3; j++) {
+          meshRenderData.mesh.addVertexColor([1, 1, 1, 1]);
+        }
         if (generatorData.flatNormal) {
           meshRenderData.mesh.addVertexNormal(normal);
           meshRenderData.mesh.addVertexNormal(normal);
@@ -5851,10 +5918,41 @@
           meshRenderData.mesh.addVertexNormal(vec3_exports.normalize(vec3_exports.create(), v2));
           meshRenderData.mesh.addVertexNormal(vec3_exports.normalize(vec3_exports.create(), v3));
         }
+        let texCoord1 = this.calculateUV(v1);
+        let texCoord2 = this.calculateUV(v2);
+        let texCoord3 = this.calculateUV(v3);
+        if (texCoord1[0] - texCoord2[0] > 0.5) {
+          texCoord1[0] -= 1;
+        }
+        if (texCoord2[0] - texCoord1[0] > 0.5) {
+          texCoord2[0] -= 1;
+        }
+        if (texCoord1[0] - texCoord3[0] > 0.5) {
+          texCoord1[0] -= 1;
+        }
+        if (texCoord3[0] - texCoord1[0] > 0.5) {
+          texCoord3[0] -= 1;
+        }
+        if (texCoord2[0] - texCoord3[0] > 0.5) {
+          texCoord2[0] -= 1;
+        }
+        if (texCoord3[0] - texCoord2[0] > 0.5) {
+          texCoord3[0] -= 1;
+        }
+        meshRenderData.mesh.addVertexTexCoords(texCoord1);
+        meshRenderData.mesh.addVertexTexCoords(texCoord2);
+        meshRenderData.mesh.addVertexTexCoords(texCoord3);
         meshRenderData.mesh.registerTriangle(index, index + 1, index + 2);
         index += 3;
       }
       meshRenderData.mesh.compileBufferToArrays();
+    }
+    calculateUV(v1) {
+      const longitude = Math.atan2(v1[0], v1[2]);
+      const latitude = -Math.asin(v1[1]);
+      const u = (longitude + Math.PI) / (2 * Math.PI);
+      const v = (latitude + Math.PI / 2) / Math.PI;
+      return vec2_exports.fromValues(u, v);
     }
     subdivide(vertices) {
       const newVertices = [];
@@ -5925,7 +6023,7 @@
   };
   IcosphereMeshGeneratorSystem.queries = {
     meshEntities: {
-      components: [IcosphereMeshGeneratorData, MeshRenderData3D],
+      components: [IcosphereMeshGeneratorData],
       listen: {
         added: true,
         changed: true
@@ -6052,7 +6150,7 @@
           meshRenderData.materialDesc.fragmentSource,
           meshRenderData.materialDesc.attributes,
           meshRenderData.materialDesc.uniforms,
-          meshRenderData.materialDesc.textureSamplers
+          Object.keys(meshRenderData.materialDesc.textureSamplers)
         );
       } catch (e) {
         meshRenderData.material = new Material(
@@ -6061,9 +6159,14 @@
           error_frag_default,
           meshRenderData.materialDesc.attributes,
           meshRenderData.materialDesc.uniforms,
-          meshRenderData.materialDesc.textureSamplers
+          Object.keys(meshRenderData.materialDesc.textureSamplers)
         );
         console.error(e);
+      }
+      for (const [name, src] of Object.entries(
+        meshRenderData.materialDesc.textureSamplers
+      )) {
+        meshRenderData.material.loadTexture(name, src);
       }
     }
   };
@@ -6204,6 +6307,7 @@
   };
 
   // white-dwarf/src/Editor/EditorContext.ts
+  var import_events2 = __toESM(require_events());
   var editorUIContext = {
     entityLists: null,
     entityInspector: null,
@@ -6219,7 +6323,12 @@
     onEntitySelected: []
   };
   var editorControlContext = {
-    controlMode: 1 /* Move */
+    ee: new import_events2.default(),
+    controlMode: 1 /* Move */,
+    setControlMode: function(mode) {
+      this.controlMode = mode;
+      this.ee.emit("controlModeChanged", mode);
+    }
   };
 
   // white-dwarf/src/Mathematics/Vector2.ts
@@ -6389,85 +6498,6 @@
     }
   };
 
-  // white-dwarf/src/Editor/System/EditorViewPortWebGlSystems/EditorViewPortWebGLSystem.ts
-  var _EditorViewPortWebGLSystem = class extends CanvasWebGLRenderer {
-    constructor() {
-      super(...arguments);
-      this.mousePosition = vec2_exports.create();
-      this.mouseDelta = vec2_exports.create();
-      this.mouseInCanvas = true;
-      this.highlightAxis = null;
-      this.movingAxis = null;
-    }
-    init(attributes) {
-      super.init(attributes);
-      this.mainCanvas.addEventListener("mousemove", (event) => {
-        this.mousePosition = this.getMousePos(event);
-        vec2_exports.add(
-          this.mouseDelta,
-          this.mouseDelta,
-          vec2_exports.fromValues(event.movementX, event.movementY)
-        );
-      });
-      this.mainCanvas.addEventListener("mouseenter", () => {
-        this.mouseInCanvas = true;
-      });
-      this.mainCanvas.addEventListener("mouseleave", () => {
-        this.mouseInCanvas = false;
-      });
-      this.mainCanvas.addEventListener("mousedown", (event) => {
-        if (event.button == 0) {
-          if (this.highlightAxis) {
-            this.movingAxis = this.highlightAxis;
-          }
-        }
-      });
-      this.mainCanvas.addEventListener("mouseup", (event) => {
-        if (event.button == 0) {
-          this.movingAxis = null;
-        }
-      });
-    }
-    execute(delta, time) {
-      var _a;
-      try {
-        super.execute(delta, time);
-      } catch (error) {
-        console.warn(error);
-        return;
-      }
-      const tView = this.getViewMatrix(this.cameraTransform);
-      let tProjection;
-      if (this.cameraPerspective) {
-        tProjection = this.getPerspectiveProjectionMatrix(this.cameraPerspective);
-      } else if (this.cameraOrthographic) {
-        tProjection = this.getOrthographicProjectionMatrix(
-          this.cameraOrthographic
-        );
-      } else {
-        throw new Error("No camera found.");
-      }
-      if (editorControlContext.controlMode == 1 /* Move */ && _EditorViewPortWebGLSystem.inspectTransform && !((_a = _EditorViewPortWebGLSystem.inspectEntity) == null ? void 0 : _a.hasComponent(EditorSceneCamTag))) {
-        this.drawInspectEntity(
-          _EditorViewPortWebGLSystem.inspectEntity,
-          _EditorViewPortWebGLSystem.inspectTransform,
-          tView,
-          tProjection
-        );
-      }
-      vec2_exports.set(this.mouseDelta, 0, 0);
-    }
-    getMousePos(event) {
-      const rect = this.mainCanvas.getBoundingClientRect();
-      return vec2_exports.fromValues(event.clientX - rect.left, event.clientY - rect.top);
-    }
-    drawInspectEntity(entity, transform, tView, tProjection) {
-    }
-  };
-  var EditorViewPortWebGLSystem = _EditorViewPortWebGLSystem;
-  EditorViewPortWebGLSystem.inspectEntity = null;
-  EditorViewPortWebGLSystem.inspectTransform = null;
-
   // white-dwarf/src/Core/Render/Shader/EditorShader/point_vert.glsl
   var point_vert_default = "attribute vec3 vPosition;attribute float vSize;attribute vec4 vColor;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;void main(){fPosition=(uMV*vec4(vPosition,1.0)).xyz;fColor=vColor;gl_Position=uMVP*vec4(vPosition,1.0);gl_PointSize=vSize;}";
 
@@ -6480,11 +6510,15 @@
   // white-dwarf/src/Core/Render/Shader/EditorShader/line_frag.glsl
   var line_frag_default = "precision highp float;varying vec3 fPosition;varying vec4 fColor;void main(){gl_FragColor=fColor;}";
 
-  // white-dwarf/src/Editor/System/EditorViewPortWebGlSystems/EditorViewPortWebGLTransformSystem.ts
-  var moveControlThreshold = 10;
-  var EditorViewPortWebGLTransformSystem = class extends EditorViewPortWebGLSystem {
+  // white-dwarf/src/Editor/System/EditorViewPortWebGlSystems/EditorViewPortWebGLSystem.ts
+  var _EditorViewPortWebGLSystem = class extends CanvasWebGLRenderer {
     constructor() {
       super(...arguments);
+      this.mousePosition = vec2_exports.create();
+      this.mouseDelta = vec2_exports.create();
+      this.mouseInCanvas = true;
+      this.highlightAxis = null;
+      this.movingAxis = null;
       this.pointAttributes = {
         vPosition: -1,
         vSize: -1,
@@ -6523,6 +6557,32 @@
     }
     init(attributes) {
       super.init(attributes);
+      this.mainCanvas.addEventListener("mousemove", (event) => {
+        this.mousePosition = this.getMousePos(event);
+        vec2_exports.add(
+          this.mouseDelta,
+          this.mouseDelta,
+          vec2_exports.fromValues(event.movementX, event.movementY)
+        );
+      });
+      this.mainCanvas.addEventListener("mouseenter", () => {
+        this.mouseInCanvas = true;
+      });
+      this.mainCanvas.addEventListener("mouseleave", () => {
+        this.mouseInCanvas = false;
+      });
+      this.mainCanvas.addEventListener("mousedown", (event) => {
+        if (event.button == 0) {
+          if (this.highlightAxis) {
+            this.movingAxis = this.highlightAxis;
+          }
+        }
+      });
+      this.mainCanvas.addEventListener("mouseup", (event) => {
+        if (event.button == 0) {
+          this.movingAxis = null;
+        }
+      });
       const pointVertices = new Float32Array([0, 0, 0]);
       this.pointVertexPositionBuffer = this.glContext.createBuffer();
       this.glContext.bindBuffer(
@@ -6654,93 +6714,40 @@
         this.axisUniforms
       );
     }
-    drawInspectEntity(entity, transform, tView, tProjection) {
-      const tModel = this.getModelMatrix(transform, true);
-      const tMV = mat4_exports.create();
-      mat4_exports.multiply(tMV, tView, tModel);
-      const tMVn = mat3_exports.create();
-      mat3_exports.normalFromMat4(tMVn, tMV);
-      const tMVP = mat4_exports.create();
-      mat4_exports.multiply(tMVP, tProjection, tMV);
-      this.drawPoint(tMV, tProjection, tMVn, tMVP);
-      this.drawAxis(tMV, tProjection, tMVn, tMVP);
-      const tNDCtoViewport = this.getNDCToViewportMatrix();
-      const tModelToViewport = mat4_exports.create();
-      mat4_exports.multiply(tModelToViewport, tNDCtoViewport, tMVP);
-      const startPoint = vec3_exports.transformMat4(
-        vec3_exports.create(),
-        [0, 0, 0],
-        tModelToViewport
-      );
-      const endPointX = vec3_exports.transformMat4(
-        vec3_exports.create(),
-        [1, 0, 0],
-        tModelToViewport
-      );
-      const endPointY = vec3_exports.transformMat4(
-        vec3_exports.create(),
-        [0, 1, 0],
-        tModelToViewport
-      );
-      const endPointZ = vec3_exports.transformMat4(
-        vec3_exports.create(),
-        [0, 0, 1],
-        tModelToViewport
-      );
-      if (this.mouseInCanvas) {
-        const xDistance = vec2_exports.distance(
-          this.mousePosition,
-          vec2_exports.fromValues(endPointX[0], endPointX[1])
+    execute(delta, time) {
+      var _a;
+      try {
+        super.execute(delta, time);
+      } catch (error) {
+        console.warn(error);
+        return;
+      }
+      const tView = this.getViewMatrix(this.cameraTransform);
+      let tProjection;
+      if (this.cameraPerspective) {
+        tProjection = this.getPerspectiveProjectionMatrix(this.cameraPerspective);
+      } else if (this.cameraOrthographic) {
+        tProjection = this.getOrthographicProjectionMatrix(
+          this.cameraOrthographic
         );
-        const yDistance = vec2_exports.distance(
-          this.mousePosition,
-          vec2_exports.fromValues(endPointY[0], endPointY[1])
-        );
-        const zDistance = vec2_exports.distance(
-          this.mousePosition,
-          vec2_exports.fromValues(endPointZ[0], endPointZ[1])
-        );
-        const minDistance = Math.min(xDistance, yDistance, zDistance);
-        let axisTipSizes = new Float32Array([10, 10, 10]);
-        if (minDistance < moveControlThreshold) {
-          if (minDistance == xDistance) {
-            axisTipSizes = new Float32Array([20, 10, 10]);
-            this.highlightAxis = "x";
-          } else if (minDistance == yDistance) {
-            axisTipSizes = new Float32Array([10, 20, 10]);
-            this.highlightAxis = "y";
-          } else if (minDistance == zDistance) {
-            axisTipSizes = new Float32Array([10, 10, 20]);
-            this.highlightAxis = "z";
-          }
-        } else {
-          this.highlightAxis = null;
-        }
-        if (this.movingAxis) {
-          switch (this.movingAxis) {
-            case "x":
-              this.moveAxis(endPointX, startPoint, 0);
-              break;
-            case "y":
-              this.moveAxis(endPointY, startPoint, 1);
-              break;
-            case "z":
-              this.moveAxis(endPointZ, startPoint, 2);
-              break;
-            default:
-              break;
-          }
-        }
-        this.glContext.bindBuffer(
-          this.glContext.ARRAY_BUFFER,
-          this.axisTipVertexSizeBuffer
-        );
-        this.glContext.bufferData(
-          this.glContext.ARRAY_BUFFER,
-          axisTipSizes,
-          this.glContext.STATIC_DRAW
+      } else {
+        throw new Error("No camera found.");
+      }
+      if (_EditorViewPortWebGLSystem.inspectTransform && !((_a = _EditorViewPortWebGLSystem.inspectEntity) == null ? void 0 : _a.hasComponent(EditorSceneCamTag))) {
+        this.drawInspectEntity(
+          _EditorViewPortWebGLSystem.inspectEntity,
+          _EditorViewPortWebGLSystem.inspectTransform,
+          tView,
+          tProjection
         );
       }
+      vec2_exports.set(this.mouseDelta, 0, 0);
+    }
+    getMousePos(event) {
+      const rect = this.mainCanvas.getBoundingClientRect();
+      return vec2_exports.fromValues(event.clientX - rect.left, event.clientY - rect.top);
+    }
+    drawInspectEntity(entity, transform, tView, tProjection) {
     }
     drawPoint(tMV, tProjection, tMVn, tMVP) {
       this.glContext.disable(this.glContext.DEPTH_TEST);
@@ -6936,7 +6943,253 @@
       }
       return shaderProgram;
     }
-    moveAxis(axisEndPoint, startPoint, axisIndex) {
+  };
+  var EditorViewPortWebGLSystem = _EditorViewPortWebGLSystem;
+  EditorViewPortWebGLSystem.inspectEntity = null;
+  EditorViewPortWebGLSystem.inspectTransform = null;
+
+  // white-dwarf/src/Editor/System/EditorViewPortWebGlSystems/EditorViewPortWebGLRotateSystem.ts
+  var moveControlThreshold = 10;
+  var rotateSensitive2 = 1;
+  var EditorViewPortWebGLRotateSystem = class extends EditorViewPortWebGLSystem {
+    init(attributes) {
+      super.init(attributes);
+    }
+    drawInspectEntity(entity, transform, tView, tProjection) {
+      if (editorControlContext.controlMode !== 2 /* Rotate */) {
+        return;
+      }
+      const tModel = this.getModelMatrix(transform, true);
+      const tMV = mat4_exports.create();
+      mat4_exports.multiply(tMV, tView, tModel);
+      const tMVn = mat3_exports.create();
+      mat3_exports.normalFromMat4(tMVn, tMV);
+      const tMVP = mat4_exports.create();
+      mat4_exports.multiply(tMVP, tProjection, tMV);
+      this.drawPoint(tMV, tProjection, tMVn, tMVP);
+      this.drawAxis(tMV, tProjection, tMVn, tMVP);
+      const tNDCtoViewport = this.getNDCToViewportMatrix();
+      const tModelToViewport = mat4_exports.create();
+      mat4_exports.multiply(tModelToViewport, tNDCtoViewport, tMVP);
+      const startPoint = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [0, 0, 0],
+        tModelToViewport
+      );
+      const endPointX = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [1, 0, 0],
+        tModelToViewport
+      );
+      const endPointY = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [0, 1, 0],
+        tModelToViewport
+      );
+      const endPointZ = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [0, 0, 1],
+        tModelToViewport
+      );
+      if (this.mouseInCanvas) {
+        const xDistance = vec2_exports.distance(
+          this.mousePosition,
+          vec2_exports.fromValues(endPointX[0], endPointX[1])
+        );
+        const yDistance = vec2_exports.distance(
+          this.mousePosition,
+          vec2_exports.fromValues(endPointY[0], endPointY[1])
+        );
+        const zDistance = vec2_exports.distance(
+          this.mousePosition,
+          vec2_exports.fromValues(endPointZ[0], endPointZ[1])
+        );
+        const minDistance = Math.min(xDistance, yDistance, zDistance);
+        let axisTipSizes = new Float32Array([10, 10, 10]);
+        if (minDistance < moveControlThreshold) {
+          if (minDistance == xDistance) {
+            axisTipSizes = new Float32Array([20, 10, 10]);
+            this.highlightAxis = "x";
+          } else if (minDistance == yDistance) {
+            axisTipSizes = new Float32Array([10, 20, 10]);
+            this.highlightAxis = "y";
+          } else if (minDistance == zDistance) {
+            axisTipSizes = new Float32Array([10, 10, 20]);
+            this.highlightAxis = "z";
+          }
+        } else {
+          this.highlightAxis = null;
+        }
+        if (this.movingAxis) {
+          switch (this.movingAxis) {
+            case "x":
+              this.rotateAxis(endPointX, startPoint, 0);
+              break;
+            case "y":
+              this.rotateAxis(endPointY, startPoint, 1);
+              break;
+            case "z":
+              this.rotateAxis(endPointZ, startPoint, 2);
+              break;
+            default:
+              break;
+          }
+        }
+        this.glContext.bindBuffer(
+          this.glContext.ARRAY_BUFFER,
+          this.axisTipVertexSizeBuffer
+        );
+        this.glContext.bufferData(
+          this.glContext.ARRAY_BUFFER,
+          axisTipSizes,
+          this.glContext.STATIC_DRAW
+        );
+      }
+    }
+    rotateAxis(axisEndPoint, startPoint, axisIndex) {
+      var _a;
+      const axisDir = vec2_exports.create();
+      vec2_exports.sub(
+        axisDir,
+        vec2_exports.fromValues(axisEndPoint[0], axisEndPoint[1]),
+        vec2_exports.fromValues(startPoint[0], startPoint[1])
+      );
+      let axisMove = vec2_exports.dot(
+        axisDir,
+        vec2_exports.fromValues(this.mouseDelta[0], this.mouseDelta[1])
+      );
+      axisMove = axisMove * rotateSensitive2 / Math.pow(vec2_exports.length(axisDir), 2);
+      if (EditorViewPortWebGLSystem.inspectTransform) {
+        switch (axisIndex) {
+          case 0:
+            quat_exports.rotateX(
+              EditorViewPortWebGLSystem.inspectTransform.rotation.value,
+              EditorViewPortWebGLSystem.inspectTransform.rotation.value,
+              axisMove
+            );
+            break;
+          case 1:
+            quat_exports.rotateY(
+              EditorViewPortWebGLSystem.inspectTransform.rotation.value,
+              EditorViewPortWebGLSystem.inspectTransform.rotation.value,
+              axisMove
+            );
+            break;
+          case 2:
+            quat_exports.rotateZ(
+              EditorViewPortWebGLSystem.inspectTransform.rotation.value,
+              EditorViewPortWebGLSystem.inspectTransform.rotation.value,
+              axisMove
+            );
+            break;
+          default:
+            break;
+        }
+        (_a = EditorViewPortWebGLSystem.inspectEntity) == null ? void 0 : _a.getMutableComponent(
+          TransformData3D
+        );
+      }
+    }
+  };
+
+  // white-dwarf/src/Editor/System/EditorViewPortWebGlSystems/EditorViewPortWebGLTransformSystem.ts
+  var moveControlThreshold2 = 10;
+  var EditorViewPortWebGLTransformSystem = class extends EditorViewPortWebGLSystem {
+    init(attributes) {
+      super.init(attributes);
+    }
+    drawInspectEntity(entity, transform, tView, tProjection) {
+      if (editorControlContext.controlMode !== 1 /* Move */) {
+        return;
+      }
+      const tModel = this.getModelMatrix(transform, true);
+      const tMV = mat4_exports.create();
+      mat4_exports.multiply(tMV, tView, tModel);
+      const tMVn = mat3_exports.create();
+      mat3_exports.normalFromMat4(tMVn, tMV);
+      const tMVP = mat4_exports.create();
+      mat4_exports.multiply(tMVP, tProjection, tMV);
+      this.drawPoint(tMV, tProjection, tMVn, tMVP);
+      this.drawAxis(tMV, tProjection, tMVn, tMVP);
+      const tNDCtoViewport = this.getNDCToViewportMatrix();
+      const tModelToViewport = mat4_exports.create();
+      mat4_exports.multiply(tModelToViewport, tNDCtoViewport, tMVP);
+      const startPoint = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [0, 0, 0],
+        tModelToViewport
+      );
+      const endPointX = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [1, 0, 0],
+        tModelToViewport
+      );
+      const endPointY = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [0, 1, 0],
+        tModelToViewport
+      );
+      const endPointZ = vec3_exports.transformMat4(
+        vec3_exports.create(),
+        [0, 0, 1],
+        tModelToViewport
+      );
+      if (this.mouseInCanvas) {
+        const xDistance = vec2_exports.distance(
+          this.mousePosition,
+          vec2_exports.fromValues(endPointX[0], endPointX[1])
+        );
+        const yDistance = vec2_exports.distance(
+          this.mousePosition,
+          vec2_exports.fromValues(endPointY[0], endPointY[1])
+        );
+        const zDistance = vec2_exports.distance(
+          this.mousePosition,
+          vec2_exports.fromValues(endPointZ[0], endPointZ[1])
+        );
+        const minDistance = Math.min(xDistance, yDistance, zDistance);
+        let axisTipSizes = new Float32Array([10, 10, 10]);
+        if (minDistance < moveControlThreshold2) {
+          if (minDistance == xDistance) {
+            axisTipSizes = new Float32Array([20, 10, 10]);
+            this.highlightAxis = "x";
+          } else if (minDistance == yDistance) {
+            axisTipSizes = new Float32Array([10, 20, 10]);
+            this.highlightAxis = "y";
+          } else if (minDistance == zDistance) {
+            axisTipSizes = new Float32Array([10, 10, 20]);
+            this.highlightAxis = "z";
+          }
+        } else {
+          this.highlightAxis = null;
+        }
+        if (this.movingAxis) {
+          switch (this.movingAxis) {
+            case "x":
+              this.moveAxis(endPointX, startPoint, 0, transform.rotation.value);
+              break;
+            case "y":
+              this.moveAxis(endPointY, startPoint, 1, transform.rotation.value);
+              break;
+            case "z":
+              this.moveAxis(endPointZ, startPoint, 2, transform.rotation.value);
+              break;
+            default:
+              break;
+          }
+        }
+        this.glContext.bindBuffer(
+          this.glContext.ARRAY_BUFFER,
+          this.axisTipVertexSizeBuffer
+        );
+        this.glContext.bufferData(
+          this.glContext.ARRAY_BUFFER,
+          axisTipSizes,
+          this.glContext.STATIC_DRAW
+        );
+      }
+    }
+    moveAxis(axisEndPoint, startPoint, axisIndex, rotation) {
       var _a;
       const axisDir = vec2_exports.create();
       vec2_exports.sub(
@@ -6950,7 +7203,14 @@
       );
       axisMove = axisMove / Math.pow(vec2_exports.length(axisDir), 2);
       if (EditorViewPortWebGLSystem.inspectTransform) {
-        EditorViewPortWebGLSystem.inspectTransform.position.value[axisIndex] += axisMove;
+        const axisMoveVec = vec3_exports.fromValues(0, 0, 0);
+        axisMoveVec[axisIndex] = axisMove;
+        vec3_exports.transformQuat(axisMoveVec, axisMoveVec, rotation);
+        vec3_exports.add(
+          EditorViewPortWebGLSystem.inspectTransform.position.value,
+          EditorViewPortWebGLSystem.inspectTransform.position.value,
+          axisMoveVec
+        );
         (_a = EditorViewPortWebGLSystem.inspectEntity) == null ? void 0 : _a.getMutableComponent(
           TransformData3D
         );
@@ -6966,6 +7226,8 @@
           mainCanvas: this.mainCanvas
         });
         world.registerSystem(EditorViewPortWebGLTransformSystem, {
+          mainCanvas: this.mainCanvas
+        }).registerSystem(EditorViewPortWebGLRotateSystem, {
           mainCanvas: this.mainCanvas
         });
       };
@@ -7022,6 +7284,17 @@
           mainWorld
         );
       }
+      mainWorld.createEntity("Earth").addComponent(TransformData3D, {
+        position: new Vector3(0, 0, 0)
+      }).addComponent(IcosphereMeshGeneratorData, {
+        radius: 1,
+        subdivisions: 3,
+        flatNormal: false
+      }).addComponent(MeshRenderData3D, {
+        materialDesc: new MaterialDescriptor({
+          tex1: "assets/1_earth_8k.jpg"
+        })
+      });
       try {
         mainWorld.registerSystem(EditorCamTagAppendSystem);
       } catch (error) {
@@ -7541,7 +7814,7 @@
   };
 
   // white-dwarf/src/Editor/System/EditorViewPort3DSystem.ts
-  var moveControlThreshold2 = 30;
+  var moveControlThreshold3 = 30;
   var _EditorViewPort3DSystem = class extends Canvas3DRenderer {
     constructor() {
       super(...arguments);
@@ -7621,14 +7894,14 @@
             vec2_exports.fromValues(endPointZ[0], endPointZ[1])
           );
           const minDistance = Math.min(xDistance, yDistance, zDistance);
-          if (minDistance < moveControlThreshold2) {
+          if (minDistance < moveControlThreshold3) {
             if (minDistance == xDistance) {
               this.canvasContext.strokeStyle = "red";
               this.canvasContext.beginPath();
               this.canvasContext.arc(
                 endPointX[0],
                 endPointX[1],
-                moveControlThreshold2,
+                moveControlThreshold3,
                 0,
                 2 * Math.PI
               );
@@ -7640,7 +7913,7 @@
               this.canvasContext.arc(
                 endPointY[0],
                 endPointY[1],
-                moveControlThreshold2,
+                moveControlThreshold3,
                 0,
                 2 * Math.PI
               );
@@ -7652,7 +7925,7 @@
               this.canvasContext.arc(
                 endPointZ[0],
                 endPointZ[1],
-                moveControlThreshold2,
+                moveControlThreshold3,
                 0,
                 2 * Math.PI
               );
@@ -7950,6 +8223,7 @@
     setupDeserializeEntityInput();
     setupSaveLoadWorldButton();
     setupEditorModeDropdown();
+    setupEditorModeKeybinds();
     mainInit();
     onResize();
   };
@@ -8041,22 +8315,63 @@
       input.click();
     });
   };
-  function setupEditorModeDropdown() {
+  var setupEditorModeDropdown = () => {
     var _a;
     (_a = editorUIContext.editorModeDropdown) == null ? void 0 : _a.addEventListener("change", (e) => {
       const value2 = e.target.value;
       switch (value2) {
         case "view":
-          editorControlContext.controlMode = 0 /* View */;
+          editorControlContext.setControlMode(0 /* View */);
           break;
         case "move":
-          editorControlContext.controlMode = 1 /* Move */;
+          editorControlContext.setControlMode(1 /* Move */);
+          break;
+        case "rotate":
+          editorControlContext.setControlMode(2 /* Rotate */);
           break;
         default:
           break;
       }
     });
-  }
+    editorControlContext.ee.on(
+      "controlModeChanged",
+      (controlMode) => {
+        if (!editorUIContext.editorModeDropdown) {
+          return;
+        }
+        switch (controlMode) {
+          case 0 /* View */:
+            editorUIContext.editorModeDropdown.value = "view";
+            break;
+          case 1 /* Move */:
+            editorUIContext.editorModeDropdown.value = "move";
+            break;
+          case 2 /* Rotate */:
+            editorUIContext.editorModeDropdown.value = "rotate";
+            break;
+          default:
+            break;
+        }
+      }
+    );
+  };
+  var setupEditorModeKeybinds = () => {
+    document.addEventListener("keydown", (e) => {
+      switch (e.code) {
+        case "KeyQ":
+          editorControlContext.setControlMode(0 /* View */);
+          break;
+        case "KeyW":
+          editorControlContext.setControlMode(1 /* Move */);
+          break;
+        case "KeyE":
+          editorControlContext.setControlMode(2 /* Rotate */);
+          break;
+        default:
+          break;
+      }
+    });
+  };
   var editorPlay = () => __async(void 0, null, function* () {
     worldData = WorldSerializer.serializeWorld(mainWorld);
     resetWorld();

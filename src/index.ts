@@ -3,7 +3,10 @@ import { coreRenderContext } from "white-dwarf/src/Core/Context/RenderContext";
 import { CoreStartProps } from "white-dwarf/src/Core/Context/SystemContext";
 import { systemContext } from "white-dwarf/src/Core/CoreSetup";
 import { TransformData3D } from "white-dwarf/src/Core/Locomotion/DataComponent/TransformData3D";
+import { IcosphereMeshGeneratorData } from "white-dwarf/src/Core/Render/DataComponent/MeshGenerator/IcosphereMeshGeneratorData";
+import { MeshRenderData3D } from "white-dwarf/src/Core/Render/DataComponent/MeshRenderData3D";
 import { PerspectiveCameraData3D } from "white-dwarf/src/Core/Render/DataComponent/PerspectiveCameraData3D";
+import { MaterialDescriptor } from "white-dwarf/src/Core/Render/Material";
 import { MainCameraTag } from "white-dwarf/src/Core/Render/TagComponent/MainCameraTag";
 import { WebGLRenderPipelineRegister } from "white-dwarf/src/Core/Render/WebGLRenderPipelineRegister";
 import {
@@ -55,6 +58,23 @@ export const main = () => {
         mainWorld
       );
     }
+
+    // Add a earth.
+    mainWorld
+      .createEntity("Earth")
+      .addComponent(TransformData3D, {
+        position: new Vector3(0, 0, 0),
+      })
+      .addComponent(IcosphereMeshGeneratorData, {
+        radius: 1,
+        subdivisions: 3,
+        flatNormal: false,
+      })
+      .addComponent(MeshRenderData3D, {
+        materialDesc: new MaterialDescriptor({
+          tex1: "assets/1_earth_8k.jpg",
+        }),
+      });
 
     // Setup editor scene camera.
     try {
