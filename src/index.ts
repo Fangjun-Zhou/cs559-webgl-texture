@@ -7,6 +7,7 @@ import { IcosphereMeshGeneratorData } from "white-dwarf/src/Core/Render/DataComp
 import { MeshRenderData3D } from "white-dwarf/src/Core/Render/DataComponent/MeshRenderData3D";
 import { PerspectiveCameraData3D } from "white-dwarf/src/Core/Render/DataComponent/PerspectiveCameraData3D";
 import { MaterialDescriptor } from "white-dwarf/src/Core/Render/Material";
+import { MainCameraInitSystem } from "white-dwarf/src/Core/Render/System/MainCameraInitSystem";
 import { MainCameraTag } from "white-dwarf/src/Core/Render/TagComponent/MainCameraTag";
 import { WebGLRenderPipelineRegister } from "white-dwarf/src/Core/Render/WebGLRenderPipelineRegister";
 import {
@@ -38,6 +39,9 @@ export const main = () => {
       // Deserialize the world.
       WorldSerializer.deserializeWorld(mainWorld, worldObject);
     }
+
+    // Add a camera init system.
+    mainWorld.registerSystem(MainCameraInitSystem);
   };
 
   systemContext.editorStart = () => {
@@ -59,22 +63,22 @@ export const main = () => {
       );
     }
 
-    // Add a earth.
-    mainWorld
-      .createEntity("Earth")
-      .addComponent(TransformData3D, {
-        position: new Vector3(0, 0, 0),
-      })
-      .addComponent(IcosphereMeshGeneratorData, {
-        radius: 1,
-        subdivisions: 3,
-        flatNormal: false,
-      })
-      .addComponent(MeshRenderData3D, {
-        materialDesc: new MaterialDescriptor({
-          tex1: "assets/1_earth_8k.jpg",
-        }),
-      });
+    // // Add a earth.
+    // mainWorld
+    //   .createEntity("Earth")
+    //   .addComponent(TransformData3D, {
+    //     position: new Vector3(0, 0, 0),
+    //   })
+    //   .addComponent(IcosphereMeshGeneratorData, {
+    //     radius: 1,
+    //     subdivisions: 3,
+    //     flatNormal: false,
+    //   })
+    //   .addComponent(MeshRenderData3D, {
+    //     materialDesc: new MaterialDescriptor({
+    //       tex1: "assets/1_earth_8k.jpg",
+    //     }),
+    //   });
 
     // Setup editor scene camera.
     try {

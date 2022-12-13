@@ -1852,8 +1852,8 @@
   var systemContext = {
     coreSetup: () => {
     },
-    coreStart: async () => {
-    },
+    coreStart: () => __async(void 0, null, function* () {
+    }),
     editorStart: () => {
     }
   };
@@ -1875,14 +1875,14 @@
     mainWorld.execute(timeContext.deltaTime);
     requestAnimationFrame(mainUpdate);
   };
-  var physicsUpdate = async () => {
+  var physicsUpdate = () => __async(void 0, null, function* () {
     while (true) {
       physicsWorld.execute(timeContext.fixedTimeStep);
-      await new Promise(
+      yield new Promise(
         (resolve) => setTimeout(resolve, timeContext.fixedTimeStep * 1e3)
       );
     }
-  };
+  });
   var mainInit = () => {
     timeContext.startTime = Date.now() / 1e3;
     timeContext.currentTime = timeContext.startTime;
@@ -4962,38 +4962,156 @@
     IComponent.register
   ], TransformData3D);
 
-  // white-dwarf/src/Core/Render/DataComponent/MeshGenerator/IcosphereMeshGeneratorData.ts
-  var IcosphereMeshGeneratorData = class extends Component {
+  // white-dwarf/src/Core/Render/DataComponent/PerspectiveCameraData3D.ts
+  var PerspectiveCameraData3D = class extends Component {
     constructor() {
       super(...arguments);
-      this.radius = 1;
-      this.subdivisions = 0;
-      this.flatNormal = false;
+      this.useDefaultInspector = false;
+      this.onInspector = (componentDiv) => {
+        const fovDiv = document.createElement("div");
+        fovDiv.style.display = "flex";
+        fovDiv.style.flexDirection = "row";
+        fovDiv.appendChild(document.createTextNode("fov: "));
+        const fovSlider = document.createElement("input");
+        fovSlider.type = "range";
+        fovSlider.min = "0";
+        fovSlider.max = "3.14";
+        fovSlider.step = "0.01";
+        fovSlider.value = this.fov.toString();
+        fovSlider.style.flex = "1";
+        fovSlider.addEventListener("change", (event) => {
+          this.fov = parseFloat(fovSlider.value);
+          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
+        });
+        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
+          if (document.activeElement !== fovSlider) {
+            fovSlider.value = this.fov.toString();
+          }
+        });
+        fovDiv.appendChild(fovSlider);
+        const aspectDiv = document.createElement("div");
+        aspectDiv.style.display = "flex";
+        aspectDiv.style.flexDirection = "row";
+        aspectDiv.appendChild(document.createTextNode("aspect: "));
+        const aspectInput = document.createElement("input");
+        aspectInput.type = "number";
+        aspectInput.value = this.aspect.toString();
+        aspectInput.style.minWidth = "0px";
+        aspectInput.style.flex = "1";
+        aspectInput.addEventListener("change", (event) => {
+          this.aspect = parseFloat(aspectInput.value);
+          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
+        });
+        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
+          if (document.activeElement !== aspectInput) {
+            aspectInput.value = this.aspect.toString();
+          }
+        });
+        aspectDiv.appendChild(aspectInput);
+        const nearDiv = document.createElement("div");
+        nearDiv.style.display = "flex";
+        nearDiv.style.flexDirection = "row";
+        nearDiv.appendChild(document.createTextNode("near: "));
+        const nearInput = document.createElement("input");
+        nearInput.type = "number";
+        nearInput.value = this.near.toString();
+        nearInput.style.minWidth = "0px";
+        nearInput.style.flex = "1";
+        nearInput.addEventListener("change", (event) => {
+          this.near = parseFloat(nearInput.value);
+          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
+        });
+        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
+          if (document.activeElement !== nearInput) {
+            nearInput.value = this.near.toString();
+          }
+        });
+        nearDiv.appendChild(nearInput);
+        const farDiv = document.createElement("div");
+        farDiv.style.display = "flex";
+        farDiv.style.flexDirection = "row";
+        farDiv.appendChild(document.createTextNode("far: "));
+        const farInput = document.createElement("input");
+        farInput.type = "number";
+        farInput.value = this.far.toString();
+        farInput.style.minWidth = "0px";
+        farInput.style.flex = "1";
+        farInput.addEventListener("change", (event) => {
+          this.far = parseFloat(farInput.value);
+          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
+        });
+        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
+          if (document.activeElement !== farInput) {
+            farInput.value = this.far.toString();
+          }
+        });
+        farDiv.appendChild(farInput);
+        componentDiv.appendChild(fovDiv);
+        componentDiv.appendChild(aspectDiv);
+        componentDiv.appendChild(nearDiv);
+        componentDiv.appendChild(farDiv);
+      };
     }
   };
-  IcosphereMeshGeneratorData.schema = {
-    radius: {
+  PerspectiveCameraData3D.schema = {
+    fov: {
+      type: Types.Number,
+      default: Math.PI / 4
+    },
+    aspect: {
       type: Types.Number,
       default: 1
     },
-    subdivisions: {
+    near: {
       type: Types.Number,
-      default: 0
+      default: 0.1
     },
-    flatNormal: {
-      type: Types.Boolean,
-      default: false
+    far: {
+      type: Types.Number,
+      default: 1e3
     }
   };
-  IcosphereMeshGeneratorData = __decorateClass([
+  PerspectiveCameraData3D = __decorateClass([
     IComponent.register
-  ], IcosphereMeshGeneratorData);
+  ], PerspectiveCameraData3D);
+
+  // white-dwarf/src/Core/Render/TagComponent/MainCameraInitTag.ts
+  var MainCameraInitTag = class extends TagComponent {
+  };
+  MainCameraInitTag = __decorateClass([
+    IComponent.register
+  ], MainCameraInitTag);
+
+  // white-dwarf/src/Core/Render/TagComponent/MainCameraTag.ts
+  var MainCameraTag = class extends TagComponent {
+  };
+  MainCameraTag = __decorateClass([
+    IComponent.register
+  ], MainCameraTag);
+
+  // white-dwarf/src/Core/Render/System/MainCameraInitSystem.ts
+  var MainCameraInitSystem = class extends System {
+    execute(delta, time) {
+      this.queries.mainCameraInitEntities.results.forEach((entity) => {
+        entity.removeComponent(MainCameraInitTag);
+        entity.addComponent(MainCameraTag);
+      });
+    }
+  };
+  MainCameraInitSystem.queries = {
+    mainCameraInitEntities: {
+      components: [MainCameraInitTag],
+      listen: {
+        added: true
+      }
+    }
+  };
 
   // white-dwarf/src/Core/Render/Shader/DefaultShader/default_vert.glsl
   var default_vert_default = "attribute vec3 vPosition;attribute vec3 vNormal;attribute vec4 vColor;attribute vec2 vTexCoord;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;void main(){fPosition=(uMV*vec4(vPosition,1.0)).xyz;fColor=vColor;fNormal=normalize(uMVn*vNormal);fTexCoord=vTexCoord;gl_Position=uMVP*vec4(vPosition,1.0);}";
 
   // white-dwarf/src/Core/Render/Shader/DefaultShader/default_frag.glsl
-  var default_frag_default = "precision highp float;uniform mat4 uV;uniform vec3 uDirLight;uniform sampler2D tex1;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;const vec4 ambientColor=vec4(1,0,0,1);const float ambientIntensity=0.1;const float specularExp=128.0;const vec4 dirLightColor=vec4(0.55,0.55,0.44,1);const float dirLightIntensity=1.0;const vec4 pointLightColor=vec4(0,1,0,1);const float pointLightIntensity=1.0;const float pointLightDistance=2.0;const float pointLightRotateSpeed=15.0;const bool useFresnelEffect=true;const vec4 fresnelColor=vec4(1,1,0,1);const float fresnelExp=5.0;const float fresnelThreshold=0.3;vec2 getDiffuseSpecular(vec3 l,vec3 h,vec3 n,float i){float diffuseIntensity=max(0.0,dot(n,l));diffuseIntensity=diffuseIntensity*i;float specularIntensity=max(0.0,pow(max(0.0,dot(n,h)),specularExp));specularIntensity=specularIntensity*i;return vec2(diffuseIntensity,specularIntensity);}void main(){vec4 baseColor=texture2D(tex1,fTexCoord);vec3 n=normalize(fNormal);vec3 e=normalize(-fPosition);vec4 ambientLight=ambientColor*ambientIntensity;vec3 dirLight=(uV*vec4(uDirLight,0)).xyz;vec3 sl=normalize(dirLight);vec3 sh=normalize(e+sl);vec2 sds=getDiffuseSpecular(sl,sh,n,dirLightIntensity);vec4 sunLight=dirLightColor*sds.x;sunLight=sunLight+dirLightColor*sds.y;vec4 color=vec4(0,0,0,1);color=color+baseColor*ambientLight;color=color+baseColor*sunLight;gl_FragColor=baseColor;}";
+  var default_frag_default = "precision highp float;uniform mat4 uV;uniform vec3 uDirLight;uniform sampler2D tex1;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;const vec4 ambientColor=vec4(1,0,0,1);const float ambientIntensity=0.05;const float specularExp=128.0;const vec4 dirLightColor=vec4(1);const float dirLightIntensity=1.0;vec2 getDiffuseSpecular(vec3 l,vec3 h,vec3 n,float i){float diffuseIntensity=max(0.0,dot(n,l));diffuseIntensity=diffuseIntensity*i;float specularIntensity=max(0.0,pow(max(0.0,dot(n,h)),specularExp));specularIntensity=specularIntensity*i;return vec2(diffuseIntensity,specularIntensity);}void main(){vec4 baseColor=texture2D(tex1,fTexCoord);vec3 n=normalize(fNormal);vec3 e=normalize(-fPosition);vec4 ambientLight=ambientColor*ambientIntensity;vec3 lightDir=(uV*vec4(uDirLight,0)).xyz;vec3 sl=normalize(lightDir);vec3 sh=normalize(e+sl);vec2 sds=getDiffuseSpecular(sl,sh,n,dirLightIntensity);vec4 dirLigqht=dirLightColor*sds.x;dirLight=dirLight+dirLightColor*sds.y;vec4 color=vec4(0,0,0,1);color=color+baseColor*ambientLight;color=color+baseColor*dirLight;gl_FragColor=color;}";
 
   // white-dwarf/src/Core/Render/Material.ts
   var Material = class {
@@ -5200,125 +5318,12 @@
     IComponent.register
   ], MeshRenderData3D);
 
-  // white-dwarf/src/Core/Render/DataComponent/PerspectiveCameraData3D.ts
-  var PerspectiveCameraData3D = class extends Component {
-    constructor() {
-      super(...arguments);
-      this.useDefaultInspector = false;
-      this.onInspector = (componentDiv) => {
-        const fovDiv = document.createElement("div");
-        fovDiv.style.display = "flex";
-        fovDiv.style.flexDirection = "row";
-        fovDiv.appendChild(document.createTextNode("fov: "));
-        const fovSlider = document.createElement("input");
-        fovSlider.type = "range";
-        fovSlider.min = "0";
-        fovSlider.max = "3.14";
-        fovSlider.step = "0.01";
-        fovSlider.value = this.fov.toString();
-        fovSlider.style.flex = "1";
-        fovSlider.addEventListener("change", (event) => {
-          this.fov = parseFloat(fovSlider.value);
-          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
-        });
-        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
-          if (document.activeElement !== fovSlider) {
-            fovSlider.value = this.fov.toString();
-          }
-        });
-        fovDiv.appendChild(fovSlider);
-        const aspectDiv = document.createElement("div");
-        aspectDiv.style.display = "flex";
-        aspectDiv.style.flexDirection = "row";
-        aspectDiv.appendChild(document.createTextNode("aspect: "));
-        const aspectInput = document.createElement("input");
-        aspectInput.type = "number";
-        aspectInput.value = this.aspect.toString();
-        aspectInput.style.minWidth = "0px";
-        aspectInput.style.flex = "1";
-        aspectInput.addEventListener("change", (event) => {
-          this.aspect = parseFloat(aspectInput.value);
-          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
-        });
-        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
-          if (document.activeElement !== aspectInput) {
-            aspectInput.value = this.aspect.toString();
-          }
-        });
-        aspectDiv.appendChild(aspectInput);
-        const nearDiv = document.createElement("div");
-        nearDiv.style.display = "flex";
-        nearDiv.style.flexDirection = "row";
-        nearDiv.appendChild(document.createTextNode("near: "));
-        const nearInput = document.createElement("input");
-        nearInput.type = "number";
-        nearInput.value = this.near.toString();
-        nearInput.style.minWidth = "0px";
-        nearInput.style.flex = "1";
-        nearInput.addEventListener("change", (event) => {
-          this.near = parseFloat(nearInput.value);
-          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
-        });
-        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
-          if (document.activeElement !== nearInput) {
-            nearInput.value = this.near.toString();
-          }
-        });
-        nearDiv.appendChild(nearInput);
-        const farDiv = document.createElement("div");
-        farDiv.style.display = "flex";
-        farDiv.style.flexDirection = "row";
-        farDiv.appendChild(document.createTextNode("far: "));
-        const farInput = document.createElement("input");
-        farInput.type = "number";
-        farInput.value = this.far.toString();
-        farInput.style.minWidth = "0px";
-        farInput.style.flex = "1";
-        farInput.addEventListener("change", (event) => {
-          this.far = parseFloat(farInput.value);
-          this.eventEmitter.emit(COMPONENT_CHANGE_EVENT, this);
-        });
-        this.eventEmitter.on(COMPONENT_CHANGE_EVENT, () => {
-          if (document.activeElement !== farInput) {
-            farInput.value = this.far.toString();
-          }
-        });
-        farDiv.appendChild(farInput);
-        componentDiv.appendChild(fovDiv);
-        componentDiv.appendChild(aspectDiv);
-        componentDiv.appendChild(nearDiv);
-        componentDiv.appendChild(farDiv);
-      };
-    }
+  // white-dwarf/src/Core/Render/TagComponent/DirectionalLightTag.ts
+  var DirectionalLightTag = class extends Component {
   };
-  PerspectiveCameraData3D.schema = {
-    fov: {
-      type: Types.Number,
-      default: Math.PI / 4
-    },
-    aspect: {
-      type: Types.Number,
-      default: 1
-    },
-    near: {
-      type: Types.Number,
-      default: 0.1
-    },
-    far: {
-      type: Types.Number,
-      default: 1e3
-    }
-  };
-  PerspectiveCameraData3D = __decorateClass([
+  DirectionalLightTag = __decorateClass([
     IComponent.register
-  ], PerspectiveCameraData3D);
-
-  // white-dwarf/src/Core/Render/TagComponent/MainCameraTag.ts
-  var MainCameraTag = class extends TagComponent {
-  };
-  MainCameraTag = __decorateClass([
-    IComponent.register
-  ], MainCameraTag);
+  ], DirectionalLightTag);
 
   // white-dwarf/src/Core/Render/DataComponent/OrthographicCameraData3D.ts
   var OrthographicCameraData3D = class extends Component {
@@ -5498,6 +5503,17 @@
       } else {
         throw new Error("No camera found.");
       }
+      let lightDir = vec3_exports.fromValues(0, 1, 0);
+      if (this.queries.directionalLights.results.length > 0) {
+        const lightTransform = this.queries.directionalLights.results[0].getComponent(
+          TransformData3D
+        );
+        vec3_exports.transformQuat(
+          lightDir,
+          vec3_exports.fromValues(0, 0, -1),
+          lightTransform.rotation.value
+        );
+      }
       this.queries.meshEntities.results.forEach((entity) => {
         const transform = entity.getComponent(TransformData3D);
         const meshRenderData = entity.getComponent(
@@ -5548,7 +5564,7 @@
         );
         this.glContext.uniform3fv(
           material.uniformLocations.uDirLight,
-          [1, 0.5, -1.3]
+          lightDir
         );
         this.glContext.bindBuffer(
           this.glContext.ARRAY_BUFFER,
@@ -5616,6 +5632,9 @@
   WebGLOpaqueRenderer.queries = __spreadProps(__spreadValues({}, _WebGLOpaqueRenderer.queries), {
     meshEntities: {
       components: [TransformData3D, MeshRenderData3D]
+    },
+    directionalLights: {
+      components: [TransformData3D, DirectionalLightTag]
     }
   });
 
@@ -5859,6 +5878,33 @@
     }
   };
 
+  // white-dwarf/src/Core/Render/DataComponent/MeshGenerator/IcosphereMeshGeneratorData.ts
+  var IcosphereMeshGeneratorData = class extends Component {
+    constructor() {
+      super(...arguments);
+      this.radius = 1;
+      this.subdivisions = 0;
+      this.flatNormal = false;
+    }
+  };
+  IcosphereMeshGeneratorData.schema = {
+    radius: {
+      type: Types.Number,
+      default: 1
+    },
+    subdivisions: {
+      type: Types.Number,
+      default: 0
+    },
+    flatNormal: {
+      type: Types.Boolean,
+      default: false
+    }
+  };
+  IcosphereMeshGeneratorData = __decorateClass([
+    IComponent.register
+  ], IcosphereMeshGeneratorData);
+
   // white-dwarf/src/Core/Render/System/MeshGeneratorSystems/IcosphereMeshGeneratorSystem.ts
   var IcosphereMeshGeneratorSystem = class extends System {
     init(attributes) {
@@ -5947,9 +5993,10 @@
       }
       meshRenderData.mesh.compileBufferToArrays();
     }
-    calculateUV(v1) {
-      const longitude = Math.atan2(v1[0], v1[2]);
-      const latitude = -Math.asin(v1[1]);
+    calculateUV(pos) {
+      vec3_exports.normalize(pos, pos);
+      const longitude = Math.atan2(pos[0], pos[2]);
+      const latitude = -Math.asin(pos[1]);
       const u = (longitude + Math.PI) / (2 * Math.PI);
       const v = (latitude + Math.PI / 2) / Math.PI;
       return vec2_exports.fromValues(u, v);
@@ -7272,6 +7319,7 @@
         );
         WorldSerializer.deserializeWorld(mainWorld, worldObject);
       }
+      mainWorld.registerSystem(MainCameraInitSystem);
     });
     systemContext.editorStart = () => {
       mainWorld.createEntity("Editor Main Camera").addComponent(TransformData3D, {
@@ -7284,17 +7332,6 @@
           mainWorld
         );
       }
-      mainWorld.createEntity("Earth").addComponent(TransformData3D, {
-        position: new Vector3(0, 0, 0)
-      }).addComponent(IcosphereMeshGeneratorData, {
-        radius: 1,
-        subdivisions: 3,
-        flatNormal: false
-      }).addComponent(MeshRenderData3D, {
-        materialDesc: new MaterialDescriptor({
-          tex1: "assets/1_earth_8k.jpg"
-        })
-      });
       try {
         mainWorld.registerSystem(EditorCamTagAppendSystem);
       } catch (error) {
