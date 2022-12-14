@@ -36,6 +36,42 @@
     <h1>CS559 HW8 Icosphere Earth Rendering</h1>
     <h2>Fangjun Zhou</h2>
 
+    <h2>Why You Should Give Me a 4/4 For This Assignment?</h2>
+
+    <p>
+      This assignment implement a icosphere mesh generation algorithm with mesh
+      subdivision. Some articles online (like
+      <a
+        href="https://www.danielsieger.com/blog/2021/03/27/generating-spheres.html"
+        >this one</a
+      >) talked about some implementation detail. BUT, most articles focused on
+      generating mesh instead of texture coordinate generation.
+    </p>
+
+    <p>
+      To generate a icosphere mesh with possible texture coordinate mapped to a
+      real world map. A lot of other things need to be done. The most important
+      one is guaranteeing that there's no mesh go across the poles. Since it
+      will be difficult to map the texture to the mesh at poles.
+    </p>
+
+    <p>
+      To generate texture coordinates for the mesh, I calculate the longitude
+      and latitude of each vertex. But this makes the texture mapping near the
+      International Date Line not correct. Some extra work is done
+      <a
+        href="https://github.com/Fangjun-Zhou/White-Dwarf/blob/9e218042d14071b739f3dbae546a31623e7063f7/src/Core/Render/System/MeshGeneratorSystems/IcosphereMeshGeneratorSystem.ts#L107"
+        >here</a
+      >
+      to make everything looks good.
+    </p>
+
+    <p>
+      Finally, this assignment implement a specular map to make the land looks
+      more rough and water looks more shiny. The framework actually supports
+      more texture maps if you want.
+    </p>
+
     <h2>EDITOR INSTRUCTION</h2>
     <p>
       You MAY NOT BE ABLE TO directly open White Dwarf Editor below without
@@ -92,7 +128,7 @@
       Use scroll wheel to zoom in and out.
     </p>
 
-    <h2><a href="dist/release.html">Gravity Simulation</a></h2>
+    <h2><a href="dist/release.html">Earth Rendering</a></h2>
 
     <div class="grow"></div>
   </body>
