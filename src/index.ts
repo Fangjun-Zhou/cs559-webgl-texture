@@ -14,9 +14,15 @@ import {
   WorldSerializer,
   IWorldObject,
 } from "white-dwarf/src/Core/Serialization/WorldSerializer";
+import {
+  EditorControl,
+  editorControlContext,
+} from "white-dwarf/src/Editor/EditorContext";
 import { EditorSystemWebGLRegister } from "white-dwarf/src/Editor/EditorSystemWebGLRegister";
 import { EditorCamTagAppendSystem } from "white-dwarf/src/Editor/System/EditorCamTagAppendSystem";
 import { Vector3 } from "white-dwarf/src/Mathematics/Vector3";
+import { Cam3DDragSystem } from "white-dwarf/src/Utils/System/Cam3DDragSystem";
+import { SunLightSpinSystem } from "./Systems/SunLightSpinSystem";
 
 export const main = () => {
   systemContext.coreSetup = () => {
@@ -40,8 +46,18 @@ export const main = () => {
       WorldSerializer.deserializeWorld(mainWorld, worldObject);
     }
 
+    // Change the control mode to view.
+    editorControlContext.setControlMode(EditorControl.View);
+
     // Add a camera init system.
     mainWorld.registerSystem(MainCameraInitSystem);
+
+    // Game play systems.
+    mainWorld
+      .registerSystem(Cam3DDragSystem, {
+        mainCanvas: coreRenderContext.mainCanvas,
+      })
+      .registerSystem(SunLightSpinSystem);
   };
 
   systemContext.editorStart = () => {
@@ -62,23 +78,6 @@ export const main = () => {
         mainWorld
       );
     }
-
-    // // Add a earth.
-    // mainWorld
-    //   .createEntity("Earth")
-    //   .addComponent(TransformData3D, {
-    //     position: new Vector3(0, 0, 0),
-    //   })
-    //   .addComponent(IcosphereMeshGeneratorData, {
-    //     radius: 1,
-    //     subdivisions: 3,
-    //     flatNormal: false,
-    //   })
-    //   .addComponent(MeshRenderData3D, {
-    //     materialDesc: new MaterialDescriptor({
-    //       tex1: "assets/1_earth_8k.jpg",
-    //     }),
-    //   });
 
     // Setup editor scene camera.
     try {

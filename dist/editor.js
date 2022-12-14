@@ -99,22 +99,22 @@
       var NumberIsNaN = Number.isNaN || function NumberIsNaN2(value2) {
         return value2 !== value2;
       };
-      function EventEmitter3() {
-        EventEmitter3.init.call(this);
+      function EventEmitter4() {
+        EventEmitter4.init.call(this);
       }
-      module.exports = EventEmitter3;
+      module.exports = EventEmitter4;
       module.exports.once = once;
-      EventEmitter3.EventEmitter = EventEmitter3;
-      EventEmitter3.prototype._events = void 0;
-      EventEmitter3.prototype._eventsCount = 0;
-      EventEmitter3.prototype._maxListeners = void 0;
+      EventEmitter4.EventEmitter = EventEmitter4;
+      EventEmitter4.prototype._events = void 0;
+      EventEmitter4.prototype._eventsCount = 0;
+      EventEmitter4.prototype._maxListeners = void 0;
       var defaultMaxListeners = 10;
       function checkListener(listener) {
         if (typeof listener !== "function") {
           throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
         }
       }
-      Object.defineProperty(EventEmitter3, "defaultMaxListeners", {
+      Object.defineProperty(EventEmitter4, "defaultMaxListeners", {
         enumerable: true,
         get: function() {
           return defaultMaxListeners;
@@ -126,14 +126,14 @@
           defaultMaxListeners = arg;
         }
       });
-      EventEmitter3.init = function() {
+      EventEmitter4.init = function() {
         if (this._events === void 0 || this._events === Object.getPrototypeOf(this)._events) {
           this._events = /* @__PURE__ */ Object.create(null);
           this._eventsCount = 0;
         }
         this._maxListeners = this._maxListeners || void 0;
       };
-      EventEmitter3.prototype.setMaxListeners = function setMaxListeners(n) {
+      EventEmitter4.prototype.setMaxListeners = function setMaxListeners(n) {
         if (typeof n !== "number" || n < 0 || NumberIsNaN(n)) {
           throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + ".");
         }
@@ -142,13 +142,13 @@
       };
       function _getMaxListeners(that) {
         if (that._maxListeners === void 0)
-          return EventEmitter3.defaultMaxListeners;
+          return EventEmitter4.defaultMaxListeners;
         return that._maxListeners;
       }
-      EventEmitter3.prototype.getMaxListeners = function getMaxListeners() {
+      EventEmitter4.prototype.getMaxListeners = function getMaxListeners() {
         return _getMaxListeners(this);
       };
-      EventEmitter3.prototype.emit = function emit(type) {
+      EventEmitter4.prototype.emit = function emit(type) {
         var args = [];
         for (var i = 1; i < arguments.length; i++)
           args.push(arguments[i]);
@@ -175,9 +175,9 @@
         if (typeof handler === "function") {
           ReflectApply(handler, this, args);
         } else {
-          var len4 = handler.length;
-          var listeners = arrayClone(handler, len4);
-          for (var i = 0; i < len4; ++i)
+          var len6 = handler.length;
+          var listeners = arrayClone(handler, len6);
+          for (var i = 0; i < len6; ++i)
             ReflectApply(listeners[i], this, args);
         }
         return true;
@@ -226,11 +226,11 @@
         }
         return target;
       }
-      EventEmitter3.prototype.addListener = function addListener(type, listener) {
+      EventEmitter4.prototype.addListener = function addListener(type, listener) {
         return _addListener(this, type, listener, false);
       };
-      EventEmitter3.prototype.on = EventEmitter3.prototype.addListener;
-      EventEmitter3.prototype.prependListener = function prependListener(type, listener) {
+      EventEmitter4.prototype.on = EventEmitter4.prototype.addListener;
+      EventEmitter4.prototype.prependListener = function prependListener(type, listener) {
         return _addListener(this, type, listener, true);
       };
       function onceWrapper() {
@@ -249,17 +249,17 @@
         state.wrapFn = wrapped;
         return wrapped;
       }
-      EventEmitter3.prototype.once = function once2(type, listener) {
+      EventEmitter4.prototype.once = function once2(type, listener) {
         checkListener(listener);
         this.on(type, _onceWrap(this, type, listener));
         return this;
       };
-      EventEmitter3.prototype.prependOnceListener = function prependOnceListener(type, listener) {
+      EventEmitter4.prototype.prependOnceListener = function prependOnceListener(type, listener) {
         checkListener(listener);
         this.prependListener(type, _onceWrap(this, type, listener));
         return this;
       };
-      EventEmitter3.prototype.removeListener = function removeListener(type, listener) {
+      EventEmitter4.prototype.removeListener = function removeListener(type, listener) {
         var list, events, position, i, originalListener;
         checkListener(listener);
         events = this._events;
@@ -299,8 +299,8 @@
         }
         return this;
       };
-      EventEmitter3.prototype.off = EventEmitter3.prototype.removeListener;
-      EventEmitter3.prototype.removeAllListeners = function removeAllListeners(type) {
+      EventEmitter4.prototype.off = EventEmitter4.prototype.removeListener;
+      EventEmitter4.prototype.removeAllListeners = function removeAllListeners(type) {
         var listeners, events, i;
         events = this._events;
         if (events === void 0)
@@ -352,20 +352,20 @@
           return unwrap ? [evlistener.listener || evlistener] : [evlistener];
         return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
       }
-      EventEmitter3.prototype.listeners = function listeners(type) {
+      EventEmitter4.prototype.listeners = function listeners(type) {
         return _listeners(this, type, true);
       };
-      EventEmitter3.prototype.rawListeners = function rawListeners(type) {
+      EventEmitter4.prototype.rawListeners = function rawListeners(type) {
         return _listeners(this, type, false);
       };
-      EventEmitter3.listenerCount = function(emitter, type) {
+      EventEmitter4.listenerCount = function(emitter, type) {
         if (typeof emitter.listenerCount === "function") {
           return emitter.listenerCount(type);
         } else {
           return listenerCount.call(emitter, type);
         }
       };
-      EventEmitter3.prototype.listenerCount = listenerCount;
+      EventEmitter4.prototype.listenerCount = listenerCount;
       function listenerCount(type) {
         var events = this._events;
         if (events !== void 0) {
@@ -378,14 +378,14 @@
         }
         return 0;
       }
-      EventEmitter3.prototype.eventNames = function eventNames() {
+      EventEmitter4.prototype.eventNames = function eventNames() {
         return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
       };
       function arrayClone(arr, n) {
-        var copy7 = new Array(n);
+        var copy9 = new Array(n);
         for (var i = 0; i < n; ++i)
-          copy7[i] = arr[i];
-        return copy7;
+          copy9[i] = arr[i];
+        return copy9;
       }
       function spliceOne(list, index) {
         for (; index + 1 < list.length; index++)
@@ -472,7 +472,7 @@
     }
   });
 
-  // white-dwarf/ecsy/src/Utils.js
+  // white-dwarf/node_modules/ecsy-wd/src/Utils.js
   function queryKey(Components) {
     var ids = [];
     for (var n = 0; n < Components.length; n++) {
@@ -495,7 +495,7 @@
     return typeof T === "object" && T.Component._typeId !== void 0 || T.isComponent && T._typeId !== void 0;
   }
 
-  // white-dwarf/ecsy/src/SystemManager.js
+  // white-dwarf/node_modules/ecsy-wd/src/SystemManager.js
   var SystemManager = class {
     constructor(world) {
       this._systems = [];
@@ -593,7 +593,7 @@
     }
   };
 
-  // white-dwarf/ecsy/src/ObjectPool.js
+  // white-dwarf/node_modules/ecsy-wd/src/ObjectPool.js
   var ObjectPool = class {
     constructor(T, initialSize) {
       this.freeList = [];
@@ -617,9 +617,9 @@
     }
     expand(count) {
       for (var n = 0; n < count; n++) {
-        var clone7 = new this.T();
-        clone7._pool = this;
-        this.freeList.push(clone7);
+        var clone9 = new this.T();
+        clone9._pool = this;
+        this.freeList.push(clone9);
       }
       this.count += count;
     }
@@ -634,7 +634,7 @@
     }
   };
 
-  // white-dwarf/ecsy/src/EventDispatcher.js
+  // white-dwarf/node_modules/ecsy-wd/src/EventDispatcher.js
   var EventDispatcher = class {
     constructor() {
       this._listeners = {};
@@ -679,7 +679,7 @@
     }
   };
 
-  // white-dwarf/ecsy/src/Query.js
+  // white-dwarf/node_modules/ecsy-wd/src/Query.js
   var Query = class {
     constructor(Components, manager) {
       this.Components = [];
@@ -748,7 +748,7 @@
   Query.prototype.ENTITY_REMOVED = "Query#ENTITY_REMOVED";
   Query.prototype.COMPONENT_CHANGED = "Query#COMPONENT_CHANGED";
 
-  // white-dwarf/ecsy/src/QueryManager.js
+  // white-dwarf/node_modules/ecsy-wd/src/QueryManager.js
   var QueryManager = class {
     constructor(world) {
       this._world = world;
@@ -762,26 +762,26 @@
         }
       }
     }
-    onEntityComponentAdded(entity, Component2) {
+    onEntityComponentAdded(entity, Component3) {
       for (var queryName in this._queries) {
         var query = this._queries[queryName];
-        if (!!~query.NotComponents.indexOf(Component2) && ~query.entities.indexOf(entity)) {
+        if (!!~query.NotComponents.indexOf(Component3) && ~query.entities.indexOf(entity)) {
           query.removeEntity(entity);
           continue;
         }
-        if (!~query.Components.indexOf(Component2) || !query.match(entity) || ~query.entities.indexOf(entity))
+        if (!~query.Components.indexOf(Component3) || !query.match(entity) || ~query.entities.indexOf(entity))
           continue;
         query.addEntity(entity);
       }
     }
-    onEntityComponentRemoved(entity, Component2) {
+    onEntityComponentRemoved(entity, Component3) {
       for (var queryName in this._queries) {
         var query = this._queries[queryName];
-        if (!!~query.NotComponents.indexOf(Component2) && !~query.entities.indexOf(entity) && query.match(entity)) {
+        if (!!~query.NotComponents.indexOf(Component3) && !~query.entities.indexOf(entity) && query.match(entity)) {
           query.addEntity(entity);
           continue;
         }
-        if (!!~query.Components.indexOf(Component2) && !!~query.entities.indexOf(entity) && !query.match(entity)) {
+        if (!!~query.Components.indexOf(Component3) && !!~query.entities.indexOf(entity) && !query.match(entity)) {
           query.removeEntity(entity);
           continue;
         }
@@ -804,7 +804,7 @@
     }
   };
 
-  // white-dwarf/ecsy/src/Component.js
+  // white-dwarf/node_modules/ecsy-wd/src/Component.js
   var import_events = __toESM(require_events());
   var Component = class {
     constructor(props) {
@@ -886,12 +886,12 @@
   };
   var COMPONENT_CHANGE_EVENT = "COMPONENT_CHANGE_EVENT";
 
-  // white-dwarf/ecsy/src/SystemStateComponent.js
+  // white-dwarf/node_modules/ecsy-wd/src/SystemStateComponent.js
   var SystemStateComponent = class extends Component {
   };
   SystemStateComponent.isSystemStateComponent = true;
 
-  // white-dwarf/ecsy/src/EntityManager.js
+  // white-dwarf/node_modules/ecsy-wd/src/EntityManager.js
   var EntityPool = class extends ObjectPool {
     constructor(entityManager, entityClass, initialSize) {
       super(entityClass, void 0);
@@ -902,9 +902,9 @@
     }
     expand(count) {
       for (var n = 0; n < count; n++) {
-        var clone7 = new this.T(this.entityManager);
-        clone7._pool = this;
-        this.freeList.push(clone7);
+        var clone9 = new this.T(this.entityManager);
+        clone9._pool = this;
+        this.freeList.push(clone9);
       }
       this.count += count;
     }
@@ -965,67 +965,67 @@
       });
       return entity;
     }
-    entityAddComponent(entity, Component2, values) {
-      if (typeof Component2._typeId === "undefined" && !this.world.componentsManager._ComponentsMap[Component2._typeId]) {
+    entityAddComponent(entity, Component3, values) {
+      if (typeof Component3._typeId === "undefined" && !this.world.componentsManager._ComponentsMap[Component3._typeId]) {
         throw new Error(
-          `Attempted to add unregistered component "${Component2.getName()}"`
+          `Attempted to add unregistered component "${Component3.getName()}"`
         );
       }
-      if (~entity._ComponentTypes.indexOf(Component2)) {
+      if (~entity._ComponentTypes.indexOf(Component3)) {
         if (true) {
           console.warn(
             "Component type already exists on entity.",
             entity,
-            Component2.getName()
+            Component3.getName()
           );
         }
         return;
       }
-      entity._ComponentTypes.push(Component2);
-      if (Component2.__proto__ === SystemStateComponent) {
+      entity._ComponentTypes.push(Component3);
+      if (Component3.__proto__ === SystemStateComponent) {
         entity.numStateComponents++;
       }
       var componentPool = this.world.componentsManager.getComponentsPool(
-        Component2
+        Component3
       );
-      var component = componentPool ? componentPool.acquire() : new Component2(values);
+      var component = componentPool ? componentPool.acquire() : new Component3(values);
       if (componentPool && values) {
         component.copy(values);
       }
-      entity._components[Component2._typeId] = component;
-      this._queryManager.onEntityComponentAdded(entity, Component2);
-      this.world.componentsManager.componentAddedToEntity(Component2);
-      this.eventDispatcher.dispatchEvent(COMPONENT_ADDED, entity, Component2);
+      entity._components[Component3._typeId] = component;
+      this._queryManager.onEntityComponentAdded(entity, Component3);
+      this.world.componentsManager.componentAddedToEntity(Component3);
+      this.eventDispatcher.dispatchEvent(COMPONENT_ADDED, entity, Component3);
     }
-    entityRemoveComponent(entity, Component2, immediately) {
-      var index = entity._ComponentTypes.indexOf(Component2);
+    entityRemoveComponent(entity, Component3, immediately) {
+      var index = entity._ComponentTypes.indexOf(Component3);
       if (!~index)
         return;
-      this.eventDispatcher.dispatchEvent(COMPONENT_REMOVE, entity, Component2);
+      this.eventDispatcher.dispatchEvent(COMPONENT_REMOVE, entity, Component3);
       if (immediately) {
-        this._entityRemoveComponentSync(entity, Component2, index);
+        this._entityRemoveComponentSync(entity, Component3, index);
       } else {
         if (entity._ComponentTypesToRemove.length === 0)
           this.entitiesWithComponentsToRemove.push(entity);
         entity._ComponentTypes.splice(index, 1);
-        entity._ComponentTypesToRemove.push(Component2);
-        entity._componentsToRemove[Component2._typeId] = entity._components[Component2._typeId];
-        delete entity._components[Component2._typeId];
+        entity._ComponentTypesToRemove.push(Component3);
+        entity._componentsToRemove[Component3._typeId] = entity._components[Component3._typeId];
+        delete entity._components[Component3._typeId];
       }
-      this._queryManager.onEntityComponentRemoved(entity, Component2);
-      if (Component2.__proto__ === SystemStateComponent) {
+      this._queryManager.onEntityComponentRemoved(entity, Component3);
+      if (Component3.__proto__ === SystemStateComponent) {
         entity.numStateComponents--;
         if (entity.numStateComponents === 0 && !entity.alive) {
           entity.remove();
         }
       }
     }
-    _entityRemoveComponentSync(entity, Component2, index) {
+    _entityRemoveComponentSync(entity, Component3, index) {
       entity._ComponentTypes.splice(index, 1);
-      var component = entity._components[Component2._typeId];
-      delete entity._components[Component2._typeId];
+      var component = entity._components[Component3._typeId];
+      delete entity._components[Component3._typeId];
       component.dispose();
-      this.world.componentsManager.componentRemovedFromEntity(Component2);
+      this.world.componentsManager.componentRemovedFromEntity(Component3);
     }
     entityRemoveAllComponents(entity, immediately) {
       let Components = entity._ComponentTypes;
@@ -1081,11 +1081,11 @@
       for (let i = 0; i < this.entitiesWithComponentsToRemove.length; i++) {
         let entity = this.entitiesWithComponentsToRemove[i];
         while (entity._ComponentTypesToRemove.length > 0) {
-          let Component2 = entity._ComponentTypesToRemove.pop();
-          var component = entity._componentsToRemove[Component2._typeId];
-          delete entity._componentsToRemove[Component2._typeId];
+          let Component3 = entity._ComponentTypesToRemove.pop();
+          var component = entity._componentsToRemove[Component3._typeId];
+          delete entity._componentsToRemove[Component3._typeId];
           component.dispose();
-          this.world.componentsManager.componentRemovedFromEntity(Component2);
+          this.world.componentsManager.componentRemovedFromEntity(Component3);
         }
       }
       this.entitiesWithComponentsToRemove.length = 0;
@@ -1120,7 +1120,7 @@
   var COMPONENT_ADDED = "EntityManager#COMPONENT_ADDED";
   var COMPONENT_REMOVE = "EntityManager#COMPONENT_REMOVE";
 
-  // white-dwarf/ecsy/src/ComponentManager.js
+  // white-dwarf/node_modules/ecsy-wd/src/ComponentManager.js
   var ComponentManager = class {
     constructor() {
       this.Components = [];
@@ -1129,56 +1129,56 @@
       this.numComponents = {};
       this.nextComponentId = 0;
     }
-    hasComponent(Component2) {
-      return this.Components.indexOf(Component2) !== -1;
+    hasComponent(Component3) {
+      return this.Components.indexOf(Component3) !== -1;
     }
-    registerComponent(Component2, objectPool) {
-      if (this.Components.indexOf(Component2) !== -1) {
+    registerComponent(Component3, objectPool) {
+      if (this.Components.indexOf(Component3) !== -1) {
         console.warn(
-          `Component type: '${Component2.getName()}' already registered.`
+          `Component type: '${Component3.getName()}' already registered.`
         );
         return;
       }
-      const schema = Component2.schema;
+      const schema = Component3.schema;
       if (!schema) {
         throw new Error(
-          `Component "${Component2.getName()}" has no schema property.`
+          `Component "${Component3.getName()}" has no schema property.`
         );
       }
       for (const propName in schema) {
         const prop = schema[propName];
         if (!prop.type) {
           throw new Error(
-            `Invalid schema for component "${Component2.getName()}". Missing type for "${propName}" property.`
+            `Invalid schema for component "${Component3.getName()}". Missing type for "${propName}" property.`
           );
         }
       }
-      Component2._typeId = this.nextComponentId++;
-      this.Components.push(Component2);
-      this._ComponentsMap[Component2._typeId] = Component2;
-      this.numComponents[Component2._typeId] = 0;
+      Component3._typeId = this.nextComponentId++;
+      this.Components.push(Component3);
+      this._ComponentsMap[Component3._typeId] = Component3;
+      this.numComponents[Component3._typeId] = 0;
       if (objectPool === void 0) {
-        objectPool = new ObjectPool(Component2);
+        objectPool = new ObjectPool(Component3);
       } else if (objectPool === false) {
         objectPool = void 0;
       }
-      this._componentPool[Component2._typeId] = objectPool;
+      this._componentPool[Component3._typeId] = objectPool;
     }
-    componentAddedToEntity(Component2) {
-      this.numComponents[Component2._typeId]++;
+    componentAddedToEntity(Component3) {
+      this.numComponents[Component3._typeId]++;
     }
-    componentRemovedFromEntity(Component2) {
-      this.numComponents[Component2._typeId]--;
+    componentRemovedFromEntity(Component3) {
+      this.numComponents[Component3._typeId]--;
     }
-    getComponentsPool(Component2) {
-      return this._componentPool[Component2._typeId];
+    getComponentsPool(Component3) {
+      return this._componentPool[Component3._typeId];
     }
   };
 
-  // white-dwarf/ecsy/src/Version.js
+  // white-dwarf/node_modules/ecsy-wd/src/Version.js
   var Version2 = "0.3.1";
 
-  // white-dwarf/ecsy/src/WrapImmutableComponent.js
+  // white-dwarf/node_modules/ecsy-wd/src/WrapImmutableComponent.js
   var proxyMap = /* @__PURE__ */ new WeakMap();
   var proxyHandler = {
     set(target, prop) {
@@ -1201,7 +1201,7 @@
     return wrappedComponent;
   }
 
-  // white-dwarf/ecsy/src/Entity.js
+  // white-dwarf/node_modules/ecsy-wd/src/Entity.js
   var Entity = class {
     constructor(entityManager) {
       this._entityManager = entityManager || null;
@@ -1217,16 +1217,16 @@
       this.alive = false;
       this.numStateComponents = 0;
     }
-    getComponent(Component2, includeRemoved) {
-      var component = this._components[Component2._typeId];
+    getComponent(Component3, includeRemoved) {
+      var component = this._components[Component3._typeId];
       if (!component && includeRemoved === true) {
-        component = this._componentsToRemove[Component2._typeId];
+        component = this._componentsToRemove[Component3._typeId];
       }
-      return true ? wrapImmutableComponent(Component2, component) : component;
+      return true ? wrapImmutableComponent(Component3, component) : component;
     }
-    getRemovedComponent(Component2) {
-      const component = this._componentsToRemove[Component2._typeId];
-      return true ? wrapImmutableComponent(Component2, component) : component;
+    getRemovedComponent(Component3) {
+      const component = this._componentsToRemove[Component3._typeId];
+      return true ? wrapImmutableComponent(Component3, component) : component;
     }
     getComponents() {
       return this._components;
@@ -1237,14 +1237,14 @@
     getComponentTypes() {
       return this._ComponentTypes;
     }
-    getMutableComponent(Component2) {
-      var component = this._components[Component2._typeId];
+    getMutableComponent(Component3) {
+      var component = this._components[Component3._typeId];
       if (!component) {
         return;
       }
       for (var i = 0; i < this.queries.length; i++) {
         var query = this.queries[i];
-        if (query.reactive && query.Components.indexOf(Component2) !== -1) {
+        if (query.reactive && query.Components.indexOf(Component3) !== -1) {
           query.eventDispatcher.dispatchEvent(
             Query.prototype.COMPONENT_CHANGED,
             this,
@@ -1255,19 +1255,19 @@
       component.eventEmitter.emit(COMPONENT_CHANGE_EVENT, component);
       return component;
     }
-    addComponent(Component2, values) {
-      this._entityManager.entityAddComponent(this, Component2, values);
+    addComponent(Component3, values) {
+      this._entityManager.entityAddComponent(this, Component3, values);
       return this;
     }
-    removeComponent(Component2, forceImmediate) {
-      this._entityManager.entityRemoveComponent(this, Component2, forceImmediate);
+    removeComponent(Component3, forceImmediate) {
+      this._entityManager.entityRemoveComponent(this, Component3, forceImmediate);
       return this;
     }
-    hasComponent(Component2, includeRemoved) {
-      return !!~this._ComponentTypes.indexOf(Component2) || includeRemoved === true && this.hasRemovedComponent(Component2);
+    hasComponent(Component3, includeRemoved) {
+      return !!~this._ComponentTypes.indexOf(Component3) || includeRemoved === true && this.hasRemovedComponent(Component3);
     }
-    hasRemovedComponent(Component2) {
-      return !!~this._ComponentTypesToRemove.indexOf(Component2);
+    hasRemovedComponent(Component3) {
+      return !!~this._ComponentTypesToRemove.indexOf(Component3);
     }
     hasAllComponents(Components) {
       for (var i = 0; i < Components.length; i++) {
@@ -1311,7 +1311,7 @@
     }
   };
 
-  // white-dwarf/ecsy/src/World.js
+  // white-dwarf/node_modules/ecsy-wd/src/World.js
   var DEFAULT_OPTIONS = {
     entityPoolSize: 0,
     entityClass: Entity
@@ -1333,19 +1333,19 @@
       }
       this.lastTime = now() / 1e3;
     }
-    registerComponent(Component2, objectPool) {
-      this.componentsManager.registerComponent(Component2, objectPool);
+    registerComponent(Component3, objectPool) {
+      this.componentsManager.registerComponent(Component3, objectPool);
       return this;
     }
-    registerSystem(System2, attributes) {
-      this.systemManager.registerSystem(System2, attributes);
+    registerSystem(System3, attributes) {
+      this.systemManager.registerSystem(System3, attributes);
       return this;
     }
-    hasRegisteredComponent(Component2) {
-      return this.componentsManager.hasComponent(Component2);
+    hasRegisteredComponent(Component3) {
+      return this.componentsManager.hasComponent(Component3);
     }
-    unregisterSystem(System2) {
-      this.systemManager.unregisterSystem(System2);
+    unregisterSystem(System3) {
+      this.systemManager.unregisterSystem(System3);
       return this;
     }
     getSystem(SystemClass) {
@@ -1392,7 +1392,7 @@
     }
   };
 
-  // white-dwarf/ecsy/src/System.js
+  // white-dwarf/node_modules/ecsy-wd/src/System.js
   var System = class {
     canExecute() {
       if (this._mandatoryQueries.length === 0)
@@ -1428,7 +1428,7 @@
             throw new Error("'components' attribute can't be empty in a query");
           }
           let unregisteredComponents = Components.filter(
-            (Component2) => !componentRegistered(Component2)
+            (Component3) => !componentRegistered(Component3)
           );
           if (unregisteredComponents.length > 0) {
             throw new Error(
@@ -1566,7 +1566,7 @@
     return this.displayName || this.name;
   };
 
-  // white-dwarf/ecsy/src/TagComponent.js
+  // white-dwarf/node_modules/ecsy-wd/src/TagComponent.js
   var TagComponent = class extends Component {
     constructor() {
       super(false);
@@ -1574,7 +1574,7 @@
   };
   TagComponent.isTagComponent = true;
 
-  // white-dwarf/ecsy/src/Types.js
+  // white-dwarf/node_modules/ecsy-wd/src/Types.js
   var copyValue = (src) => src;
   var cloneValue = (src) => src;
   var copyArray = (src, dest) => {
@@ -1657,12 +1657,12 @@
     })
   };
 
-  // white-dwarf/ecsy/src/RemoteDevTools/utils.js
-  function generateId(length5) {
+  // white-dwarf/node_modules/ecsy-wd/src/RemoteDevTools/utils.js
+  function generateId(length8) {
     var result = "";
     var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     var charactersLength = characters.length;
-    for (var i = 0; i < length5; i++) {
+    for (var i = 0; i < length8; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
@@ -1674,7 +1674,7 @@
     (document.head || document.documentElement).appendChild(script2);
   }
 
-  // white-dwarf/ecsy/src/RemoteDevTools/index.js
+  // white-dwarf/node_modules/ecsy-wd/src/RemoteDevTools/index.js
   function hookConsoleAndErrors(connection2) {
     var wrapFunctions = ["error", "warning", "log"];
     wrapFunctions.forEach((key) => {
@@ -2318,16 +2318,16 @@
     out[8] = a[8] * b;
     return out;
   }
-  function multiplyScalarAndAdd(out, a, b, scale7) {
-    out[0] = a[0] + b[0] * scale7;
-    out[1] = a[1] + b[1] * scale7;
-    out[2] = a[2] + b[2] * scale7;
-    out[3] = a[3] + b[3] * scale7;
-    out[4] = a[4] + b[4] * scale7;
-    out[5] = a[5] + b[5] * scale7;
-    out[6] = a[6] + b[6] * scale7;
-    out[7] = a[7] + b[7] * scale7;
-    out[8] = a[8] + b[8] * scale7;
+  function multiplyScalarAndAdd(out, a, b, scale9) {
+    out[0] = a[0] + b[0] * scale9;
+    out[1] = a[1] + b[1] * scale9;
+    out[2] = a[2] + b[2] * scale9;
+    out[3] = a[3] + b[3] * scale9;
+    out[4] = a[4] + b[4] * scale9;
+    out[5] = a[5] + b[5] * scale9;
+    out[6] = a[6] + b[6] * scale9;
+    out[7] = a[7] + b[7] * scale9;
+    out[8] = a[8] + b[8] * scale9;
     return out;
   }
   function exactEquals(a, b) {
@@ -2734,7 +2734,7 @@
   }
   function rotate2(out, a, rad, axis) {
     var x = axis[0], y = axis[1], z = axis[2];
-    var len4 = Math.hypot(x, y, z);
+    var len6 = Math.hypot(x, y, z);
     var s, c, t;
     var a00, a01, a02, a03;
     var a10, a11, a12, a13;
@@ -2742,13 +2742,13 @@
     var b00, b01, b02;
     var b10, b11, b12;
     var b20, b21, b22;
-    if (len4 < EPSILON) {
+    if (len6 < EPSILON) {
       return null;
     }
-    len4 = 1 / len4;
-    x *= len4;
-    y *= len4;
-    z *= len4;
+    len6 = 1 / len6;
+    x *= len6;
+    y *= len6;
+    z *= len6;
     s = Math.sin(rad);
     c = Math.cos(rad);
     t = 1 - c;
@@ -2926,15 +2926,15 @@
   }
   function fromRotation2(out, rad, axis) {
     var x = axis[0], y = axis[1], z = axis[2];
-    var len4 = Math.hypot(x, y, z);
+    var len6 = Math.hypot(x, y, z);
     var s, c, t;
-    if (len4 < EPSILON) {
+    if (len6 < EPSILON) {
       return null;
     }
-    len4 = 1 / len4;
-    x *= len4;
-    y *= len4;
-    z *= len4;
+    len6 = 1 / len6;
+    x *= len6;
+    y *= len6;
+    z *= len6;
     s = Math.sin(rad);
     c = Math.cos(rad);
     t = 1 - c;
@@ -3392,7 +3392,7 @@
     return out;
   }
   function lookAt(out, eye, center, up) {
-    var x0, x1, x2, y0, y1, y2, z0, z1, z2, len4;
+    var x0, x1, x2, y0, y1, y2, z0, z1, z2, len6;
     var eyex = eye[0];
     var eyey = eye[1];
     var eyez = eye[2];
@@ -3408,37 +3408,37 @@
     z0 = eyex - centerx;
     z1 = eyey - centery;
     z2 = eyez - centerz;
-    len4 = 1 / Math.hypot(z0, z1, z2);
-    z0 *= len4;
-    z1 *= len4;
-    z2 *= len4;
+    len6 = 1 / Math.hypot(z0, z1, z2);
+    z0 *= len6;
+    z1 *= len6;
+    z2 *= len6;
     x0 = upy * z2 - upz * z1;
     x1 = upz * z0 - upx * z2;
     x2 = upx * z1 - upy * z0;
-    len4 = Math.hypot(x0, x1, x2);
-    if (!len4) {
+    len6 = Math.hypot(x0, x1, x2);
+    if (!len6) {
       x0 = 0;
       x1 = 0;
       x2 = 0;
     } else {
-      len4 = 1 / len4;
-      x0 *= len4;
-      x1 *= len4;
-      x2 *= len4;
+      len6 = 1 / len6;
+      x0 *= len6;
+      x1 *= len6;
+      x2 *= len6;
     }
     y0 = z1 * x2 - z2 * x1;
     y1 = z2 * x0 - z0 * x2;
     y2 = z0 * x1 - z1 * x0;
-    len4 = Math.hypot(y0, y1, y2);
-    if (!len4) {
+    len6 = Math.hypot(y0, y1, y2);
+    if (!len6) {
       y0 = 0;
       y1 = 0;
       y2 = 0;
     } else {
-      len4 = 1 / len4;
-      y0 *= len4;
-      y1 *= len4;
-      y2 *= len4;
+      len6 = 1 / len6;
+      y0 *= len6;
+      y1 *= len6;
+      y2 *= len6;
     }
     out[0] = x0;
     out[1] = y0;
@@ -3461,20 +3461,20 @@
   function targetTo(out, eye, target, up) {
     var eyex = eye[0], eyey = eye[1], eyez = eye[2], upx = up[0], upy = up[1], upz = up[2];
     var z0 = eyex - target[0], z1 = eyey - target[1], z2 = eyez - target[2];
-    var len4 = z0 * z0 + z1 * z1 + z2 * z2;
-    if (len4 > 0) {
-      len4 = 1 / Math.sqrt(len4);
-      z0 *= len4;
-      z1 *= len4;
-      z2 *= len4;
+    var len6 = z0 * z0 + z1 * z1 + z2 * z2;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
+      z0 *= len6;
+      z1 *= len6;
+      z2 *= len6;
     }
     var x0 = upy * z2 - upz * z1, x1 = upz * z0 - upx * z2, x2 = upx * z1 - upy * z0;
-    len4 = x0 * x0 + x1 * x1 + x2 * x2;
-    if (len4 > 0) {
-      len4 = 1 / Math.sqrt(len4);
-      x0 *= len4;
-      x1 *= len4;
-      x2 *= len4;
+    len6 = x0 * x0 + x1 * x1 + x2 * x2;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
+      x0 *= len6;
+      x1 *= len6;
+      x2 *= len6;
     }
     out[0] = x0;
     out[1] = x1;
@@ -3557,23 +3557,23 @@
     out[15] = a[15] * b;
     return out;
   }
-  function multiplyScalarAndAdd2(out, a, b, scale7) {
-    out[0] = a[0] + b[0] * scale7;
-    out[1] = a[1] + b[1] * scale7;
-    out[2] = a[2] + b[2] * scale7;
-    out[3] = a[3] + b[3] * scale7;
-    out[4] = a[4] + b[4] * scale7;
-    out[5] = a[5] + b[5] * scale7;
-    out[6] = a[6] + b[6] * scale7;
-    out[7] = a[7] + b[7] * scale7;
-    out[8] = a[8] + b[8] * scale7;
-    out[9] = a[9] + b[9] * scale7;
-    out[10] = a[10] + b[10] * scale7;
-    out[11] = a[11] + b[11] * scale7;
-    out[12] = a[12] + b[12] * scale7;
-    out[13] = a[13] + b[13] * scale7;
-    out[14] = a[14] + b[14] * scale7;
-    out[15] = a[15] + b[15] * scale7;
+  function multiplyScalarAndAdd2(out, a, b, scale9) {
+    out[0] = a[0] + b[0] * scale9;
+    out[1] = a[1] + b[1] * scale9;
+    out[2] = a[2] + b[2] * scale9;
+    out[3] = a[3] + b[3] * scale9;
+    out[4] = a[4] + b[4] * scale9;
+    out[5] = a[5] + b[5] * scale9;
+    out[6] = a[6] + b[6] * scale9;
+    out[7] = a[7] + b[7] * scale9;
+    out[8] = a[8] + b[8] * scale9;
+    out[9] = a[9] + b[9] * scale9;
+    out[10] = a[10] + b[10] * scale9;
+    out[11] = a[11] + b[11] * scale9;
+    out[12] = a[12] + b[12] * scale9;
+    out[13] = a[13] + b[13] * scale9;
+    out[14] = a[14] + b[14] * scale9;
+    out[15] = a[15] + b[15] * scale9;
     return out;
   }
   function exactEquals2(a, b) {
@@ -3790,10 +3790,10 @@
     out[2] = a[2] * b;
     return out;
   }
-  function scaleAndAdd(out, a, b, scale7) {
-    out[0] = a[0] + b[0] * scale7;
-    out[1] = a[1] + b[1] * scale7;
-    out[2] = a[2] + b[2] * scale7;
+  function scaleAndAdd(out, a, b, scale9) {
+    out[0] = a[0] + b[0] * scale9;
+    out[1] = a[1] + b[1] * scale9;
+    out[2] = a[2] + b[2] * scale9;
     return out;
   }
   function distance(a, b) {
@@ -3830,13 +3830,13 @@
     var x = a[0];
     var y = a[1];
     var z = a[2];
-    var len4 = x * x + y * y + z * z;
-    if (len4 > 0) {
-      len4 = 1 / Math.sqrt(len4);
+    var len6 = x * x + y * y + z * z;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
     }
-    out[0] = a[0] * len4;
-    out[1] = a[1] * len4;
-    out[2] = a[2] * len4;
+    out[0] = a[0] * len6;
+    out[1] = a[1] * len6;
+    out[2] = a[2] * len6;
     return out;
   }
   function dot(a, b) {
@@ -3883,14 +3883,14 @@
     out[2] = a[2] * factor1 + b[2] * factor2 + c[2] * factor3 + d[2] * factor4;
     return out;
   }
-  function random(out, scale7) {
-    scale7 = scale7 || 1;
+  function random(out, scale9) {
+    scale9 = scale9 || 1;
     var r = RANDOM() * 2 * Math.PI;
     var z = RANDOM() * 2 - 1;
-    var zScale = Math.sqrt(1 - z * z) * scale7;
+    var zScale = Math.sqrt(1 - z * z) * scale9;
     out[0] = Math.cos(r) * zScale;
     out[1] = Math.sin(r) * zScale;
-    out[2] = z * scale7;
+    out[2] = z * scale9;
     return out;
   }
   function transformMat4(out, a, m) {
@@ -4095,14 +4095,14 @@
     var y = a[1];
     var z = a[2];
     var w = a[3];
-    var len4 = x * x + y * y + z * z + w * w;
-    if (len4 > 0) {
-      len4 = 1 / Math.sqrt(len4);
+    var len6 = x * x + y * y + z * z + w * w;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
     }
-    out[0] = x * len4;
-    out[1] = y * len4;
-    out[2] = z * len4;
-    out[3] = w * len4;
+    out[0] = x * len6;
+    out[1] = y * len6;
+    out[2] = z * len6;
+    out[3] = w * len6;
     return out;
   }
   function dot2(a, b) {
@@ -4317,8 +4317,8 @@
   }
   function invert3(out, a) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
-    var dot5 = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
-    var invDot = dot5 ? 1 / dot5 : 0;
+    var dot8 = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
+    var invDot = dot8 ? 1 / dot8 : 0;
     out[0] = -a0 * invDot;
     out[1] = -a1 * invDot;
     out[2] = -a2 * invDot;
@@ -4400,15 +4400,15 @@
     var xUnitVec3 = fromValues3(1, 0, 0);
     var yUnitVec3 = fromValues3(0, 1, 0);
     return function(out, a, b) {
-      var dot5 = dot(a, b);
-      if (dot5 < -0.999999) {
+      var dot8 = dot(a, b);
+      if (dot8 < -0.999999) {
         cross(tmpvec3, xUnitVec3, a);
         if (len(tmpvec3) < 1e-6)
           cross(tmpvec3, yUnitVec3, a);
         normalize(tmpvec3, tmpvec3);
         setAxisAngle(out, tmpvec3, Math.PI);
         return out;
-      } else if (dot5 > 0.999999) {
+      } else if (dot8 > 0.999999) {
         out[0] = 0;
         out[1] = 0;
         out[2] = 0;
@@ -4419,7 +4419,7 @@
         out[0] = tmpvec3[0];
         out[1] = tmpvec3[1];
         out[2] = tmpvec3[2];
-        out[3] = 1 + dot5;
+        out[3] = 1 + dot8;
         return normalize3(out, out);
       }
     };
@@ -4579,9 +4579,9 @@
     out[1] = a[1] * b;
     return out;
   }
-  function scaleAndAdd2(out, a, b, scale7) {
-    out[0] = a[0] + b[0] * scale7;
-    out[1] = a[1] + b[1] * scale7;
+  function scaleAndAdd2(out, a, b, scale9) {
+    out[0] = a[0] + b[0] * scale9;
+    out[1] = a[1] + b[1] * scale9;
     return out;
   }
   function distance2(a, b) {
@@ -4612,12 +4612,12 @@
   }
   function normalize4(out, a) {
     var x = a[0], y = a[1];
-    var len4 = x * x + y * y;
-    if (len4 > 0) {
-      len4 = 1 / Math.sqrt(len4);
+    var len6 = x * x + y * y;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
     }
-    out[0] = a[0] * len4;
-    out[1] = a[1] * len4;
+    out[0] = a[0] * len6;
+    out[1] = a[1] * len6;
     return out;
   }
   function dot4(a, b) {
@@ -4635,11 +4635,11 @@
     out[1] = ay + t * (b[1] - ay);
     return out;
   }
-  function random3(out, scale7) {
-    scale7 = scale7 || 1;
+  function random3(out, scale9) {
+    scale9 = scale9 || 1;
     var r = RANDOM() * 2 * Math.PI;
-    out[0] = Math.cos(r) * scale7;
-    out[1] = Math.sin(r) * scale7;
+    out[0] = Math.cos(r) * scale9;
+    out[1] = Math.sin(r) * scale9;
     return out;
   }
   function transformMat2(out, a, m) {
@@ -5107,12 +5107,6 @@
     }
   };
 
-  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_vert.glsl
-  var default_vert_default = "attribute vec3 vPosition;attribute vec3 vNormal;attribute vec4 vColor;attribute vec2 vTexCoord;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;void main(){fPosition=(uMV*vec4(vPosition,1.0)).xyz;fColor=vColor;fNormal=normalize(uMVn*vNormal);fTexCoord=vTexCoord;gl_Position=uMVP*vec4(vPosition,1.0);}";
-
-  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_frag.glsl
-  var default_frag_default = "precision highp float;uniform mat4 uV;uniform vec3 uDirLight;uniform sampler2D tex1;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;const vec4 ambientColor=vec4(1,0,0,1);const float ambientIntensity=0.05;const float specularExp=128.0;const vec4 dirLightColor=vec4(1);const float dirLightIntensity=1.0;vec2 getDiffuseSpecular(vec3 l,vec3 h,vec3 n,float i){float diffuseIntensity=max(0.0,dot(n,l));diffuseIntensity=diffuseIntensity*i;float specularIntensity=max(0.0,pow(max(0.0,dot(n,h)),specularExp));specularIntensity=specularIntensity*i;return vec2(diffuseIntensity,specularIntensity);}void main(){vec4 baseColor=texture2D(tex1,fTexCoord);vec3 n=normalize(fNormal);vec3 e=normalize(-fPosition);vec4 ambientLight=ambientColor*ambientIntensity;vec3 lightDir=(uV*vec4(uDirLight,0)).xyz;vec3 sl=normalize(lightDir);vec3 sh=normalize(e+sl);vec2 sds=getDiffuseSpecular(sl,sh,n,dirLightIntensity);vec4 dirLigqht=dirLightColor*sds.x;dirLight=dirLight+dirLightColor*sds.y;vec4 color=vec4(0,0,0,1);color=color+baseColor*ambientLight;color=color+baseColor*dirLight;gl_FragColor=color;}";
-
   // white-dwarf/src/Core/Render/Material.ts
   var Material = class {
     constructor(glContext, vertexShaderSource, fragmentShaderSource, attributes = [], uniforms = [], textureSamplers = []) {
@@ -5188,6 +5182,7 @@
       if (!glContext.getProgramParameter(this.shaderProgram, glContext.LINK_STATUS)) {
         throw new Error("Failed to link shader program");
       }
+      glContext.useProgram(this.shaderProgram);
       for (const attribute of attributes) {
         const location = glContext.getAttribLocation(
           this.shaderProgram,
@@ -5270,7 +5265,8 @@
     }
   };
   var MaterialDescriptor = class {
-    constructor(textureSamplers = {}, vertexSource = default_vert_default, fragmentSource = default_frag_default) {
+    constructor(textureSamplers = {}, vertexSource = "", fragmentSource = "") {
+      this.fetchShader = false;
       this.attributes = ["vPosition", "vNormal", "vColor", "vTexCoord"];
       this.uniforms = ["uM", "uV", "uP", "uMV", "uMVn", "uMVP", "uDirLight"];
       this.textureSamplers = {};
@@ -5279,6 +5275,7 @@
       this.textureSamplers = textureSamplers;
     }
     copy(m) {
+      this.fetchShader = m.fetchShader;
       this.vertexSource = m.vertexSource;
       this.fragmentSource = m.fragmentSource;
       this.attributes = m.attributes;
@@ -5614,10 +5611,13 @@
           0,
           0
         );
-        for (let i = 0; i < material.textureBuffers.length; i++) {
-          const texture = material.textureBuffers[i];
-          this.glContext.activeTexture(this.glContext.TEXTURE0 + i);
+        let index = 0;
+        const keys = Object.keys(material.textureBuffers);
+        for (const key of keys) {
+          const texture = material.textureBuffers[key];
+          this.glContext.activeTexture(this.glContext.TEXTURE0 + index);
           this.glContext.bindTexture(this.glContext.TEXTURE_2D, texture);
+          index++;
         }
         this.glContext.drawElements(
           this.glContext.TRIANGLES,
@@ -6149,6 +6149,9 @@
     }
   };
 
+  // white-dwarf/src/Core/Render/Shader/DefaultShader/default_vert.glsl
+  var default_vert_default = "attribute vec3 vPosition;attribute vec3 vNormal;attribute vec4 vColor;attribute vec2 vTexCoord;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;void main(){fPosition=(uMV*vec4(vPosition,1.0)).xyz;fColor=vColor;fNormal=normalize(uMVn*vNormal);fTexCoord=vTexCoord;gl_Position=uMVP*vec4(vPosition,1.0);}";
+
   // white-dwarf/src/Core/Render/Shader/ErrorShader/error_frag.glsl
   var error_frag_default = "precision highp float;uniform mat4 uMV;uniform mat4 uP;uniform mat3 uMVn;uniform mat4 uMVP;varying vec3 fPosition;varying vec4 fColor;varying vec3 fNormal;varying vec2 fTexCoord;void main(){gl_FragColor=vec4(1.0,0.0,1.0,1.0);}";
 
@@ -6184,37 +6187,58 @@
       );
     }
     compileMaterial(entity) {
-      const meshRenderData = entity.getMutableComponent(
-        MeshRenderData3D
-      );
-      if (!meshRenderData.mesh) {
-        return;
-      }
-      try {
-        meshRenderData.material = new Material(
-          this.canvasContext,
-          meshRenderData.materialDesc.vertexSource,
-          meshRenderData.materialDesc.fragmentSource,
-          meshRenderData.materialDesc.attributes,
-          meshRenderData.materialDesc.uniforms,
-          Object.keys(meshRenderData.materialDesc.textureSamplers)
+      return __async(this, null, function* () {
+        const meshRenderData = entity.getMutableComponent(
+          MeshRenderData3D
         );
-      } catch (e) {
-        meshRenderData.material = new Material(
-          this.canvasContext,
-          default_vert_default,
-          error_frag_default,
-          meshRenderData.materialDesc.attributes,
-          meshRenderData.materialDesc.uniforms,
-          Object.keys(meshRenderData.materialDesc.textureSamplers)
-        );
-        console.error(e);
-      }
-      for (const [name, src] of Object.entries(
-        meshRenderData.materialDesc.textureSamplers
-      )) {
-        meshRenderData.material.loadTexture(name, src);
-      }
+        if (!meshRenderData.mesh) {
+          return;
+        }
+        let vert;
+        let frag;
+        if (meshRenderData.materialDesc.fetchShader) {
+          const [v, f] = yield Promise.all([
+            fetch(meshRenderData.materialDesc.vertexSource),
+            fetch(meshRenderData.materialDesc.fragmentSource)
+          ]);
+          if (!v.ok || !f.ok) {
+            console.log("Error fetching shader.");
+            vert = default_vert_default;
+            frag = error_frag_default;
+          } else {
+            vert = yield v.text();
+            frag = yield f.text();
+          }
+        } else {
+          vert = meshRenderData.materialDesc.vertexSource;
+          frag = meshRenderData.materialDesc.fragmentSource;
+        }
+        try {
+          meshRenderData.material = new Material(
+            this.canvasContext,
+            vert,
+            frag,
+            meshRenderData.materialDesc.attributes,
+            meshRenderData.materialDesc.uniforms,
+            Object.keys(meshRenderData.materialDesc.textureSamplers)
+          );
+        } catch (e) {
+          meshRenderData.material = new Material(
+            this.canvasContext,
+            default_vert_default,
+            error_frag_default,
+            meshRenderData.materialDesc.attributes,
+            meshRenderData.materialDesc.uniforms,
+            Object.keys(meshRenderData.materialDesc.textureSamplers)
+          );
+          console.error(e);
+        }
+        for (const [name, src] of Object.entries(
+          meshRenderData.materialDesc.textureSamplers
+        )) {
+          meshRenderData.material.loadTexture(name, src);
+        }
+      });
     }
   };
   WebGLMeshCompiler.queries = {
@@ -6448,7 +6472,7 @@
       this.deltaPos = new Vector3(0, 0, 0);
     }
     init(attributes) {
-      this.mainCanvas = attributes == null ? void 0 : attributes.mainCanvas;
+      this.mainCanvas = attributes?.mainCanvas;
       this.canvasContext = this.mainCanvas.getContext(
         "2d"
       );
@@ -7301,6 +7325,1270 @@
     }
   };
 
+  // node_modules/gl-matrix/esm/common.js
+  var EPSILON2 = 1e-6;
+  var ARRAY_TYPE2 = typeof Float32Array !== "undefined" ? Float32Array : Array;
+  var RANDOM2 = Math.random;
+  var degree2 = Math.PI / 180;
+  if (!Math.hypot)
+    Math.hypot = function() {
+      var y = 0, i = arguments.length;
+      while (i--) {
+        y += arguments[i] * arguments[i];
+      }
+      return Math.sqrt(y);
+    };
+
+  // node_modules/gl-matrix/esm/mat3.js
+  function create7() {
+    var out = new ARRAY_TYPE2(9);
+    if (ARRAY_TYPE2 != Float32Array) {
+      out[1] = 0;
+      out[2] = 0;
+      out[3] = 0;
+      out[5] = 0;
+      out[6] = 0;
+      out[7] = 0;
+    }
+    out[0] = 1;
+    out[4] = 1;
+    out[8] = 1;
+    return out;
+  }
+
+  // node_modules/gl-matrix/esm/quat.js
+  var quat_exports2 = {};
+  __export(quat_exports2, {
+    add: () => add8,
+    calculateW: () => calculateW2,
+    clone: () => clone8,
+    conjugate: () => conjugate2,
+    copy: () => copy8,
+    create: () => create10,
+    dot: () => dot7,
+    equals: () => equals8,
+    exactEquals: () => exactEquals8,
+    exp: () => exp2,
+    fromEuler: () => fromEuler2,
+    fromMat3: () => fromMat32,
+    fromValues: () => fromValues9,
+    getAngle: () => getAngle2,
+    getAxisAngle: () => getAxisAngle2,
+    identity: () => identity4,
+    invert: () => invert4,
+    len: () => len5,
+    length: () => length7,
+    lerp: () => lerp6,
+    ln: () => ln2,
+    mul: () => mul6,
+    multiply: () => multiply6,
+    normalize: () => normalize7,
+    pow: () => pow2,
+    random: () => random4,
+    rotateX: () => rotateX4,
+    rotateY: () => rotateY4,
+    rotateZ: () => rotateZ4,
+    rotationTo: () => rotationTo2,
+    scale: () => scale8,
+    set: () => set8,
+    setAxes: () => setAxes2,
+    setAxisAngle: () => setAxisAngle2,
+    slerp: () => slerp2,
+    sqlerp: () => sqlerp2,
+    sqrLen: () => sqrLen4,
+    squaredLength: () => squaredLength6,
+    str: () => str6
+  });
+
+  // node_modules/gl-matrix/esm/vec3.js
+  function create8() {
+    var out = new ARRAY_TYPE2(3);
+    if (ARRAY_TYPE2 != Float32Array) {
+      out[0] = 0;
+      out[1] = 0;
+      out[2] = 0;
+    }
+    return out;
+  }
+  function length5(a) {
+    var x = a[0];
+    var y = a[1];
+    var z = a[2];
+    return Math.hypot(x, y, z);
+  }
+  function fromValues7(x, y, z) {
+    var out = new ARRAY_TYPE2(3);
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+    return out;
+  }
+  function normalize5(out, a) {
+    var x = a[0];
+    var y = a[1];
+    var z = a[2];
+    var len6 = x * x + y * y + z * z;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
+    }
+    out[0] = a[0] * len6;
+    out[1] = a[1] * len6;
+    out[2] = a[2] * len6;
+    return out;
+  }
+  function dot5(a, b) {
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  }
+  function cross3(out, a, b) {
+    var ax = a[0], ay = a[1], az = a[2];
+    var bx = b[0], by = b[1], bz = b[2];
+    out[0] = ay * bz - az * by;
+    out[1] = az * bx - ax * bz;
+    out[2] = ax * by - ay * bx;
+    return out;
+  }
+  var len4 = length5;
+  var forEach4 = function() {
+    var vec = create8();
+    return function(a, stride, offset, count, fn, arg) {
+      var i, l;
+      if (!stride) {
+        stride = 3;
+      }
+      if (!offset) {
+        offset = 0;
+      }
+      if (count) {
+        l = Math.min(count * stride + offset, a.length);
+      } else {
+        l = a.length;
+      }
+      for (i = offset; i < l; i += stride) {
+        vec[0] = a[i];
+        vec[1] = a[i + 1];
+        vec[2] = a[i + 2];
+        fn(vec, vec, arg);
+        a[i] = vec[0];
+        a[i + 1] = vec[1];
+        a[i + 2] = vec[2];
+      }
+      return a;
+    };
+  }();
+
+  // node_modules/gl-matrix/esm/vec4.js
+  function create9() {
+    var out = new ARRAY_TYPE2(4);
+    if (ARRAY_TYPE2 != Float32Array) {
+      out[0] = 0;
+      out[1] = 0;
+      out[2] = 0;
+      out[3] = 0;
+    }
+    return out;
+  }
+  function clone7(a) {
+    var out = new ARRAY_TYPE2(4);
+    out[0] = a[0];
+    out[1] = a[1];
+    out[2] = a[2];
+    out[3] = a[3];
+    return out;
+  }
+  function fromValues8(x, y, z, w) {
+    var out = new ARRAY_TYPE2(4);
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+    out[3] = w;
+    return out;
+  }
+  function copy7(out, a) {
+    out[0] = a[0];
+    out[1] = a[1];
+    out[2] = a[2];
+    out[3] = a[3];
+    return out;
+  }
+  function set7(out, x, y, z, w) {
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+    out[3] = w;
+    return out;
+  }
+  function add7(out, a, b) {
+    out[0] = a[0] + b[0];
+    out[1] = a[1] + b[1];
+    out[2] = a[2] + b[2];
+    out[3] = a[3] + b[3];
+    return out;
+  }
+  function scale7(out, a, b) {
+    out[0] = a[0] * b;
+    out[1] = a[1] * b;
+    out[2] = a[2] * b;
+    out[3] = a[3] * b;
+    return out;
+  }
+  function length6(a) {
+    var x = a[0];
+    var y = a[1];
+    var z = a[2];
+    var w = a[3];
+    return Math.hypot(x, y, z, w);
+  }
+  function squaredLength5(a) {
+    var x = a[0];
+    var y = a[1];
+    var z = a[2];
+    var w = a[3];
+    return x * x + y * y + z * z + w * w;
+  }
+  function normalize6(out, a) {
+    var x = a[0];
+    var y = a[1];
+    var z = a[2];
+    var w = a[3];
+    var len6 = x * x + y * y + z * z + w * w;
+    if (len6 > 0) {
+      len6 = 1 / Math.sqrt(len6);
+    }
+    out[0] = x * len6;
+    out[1] = y * len6;
+    out[2] = z * len6;
+    out[3] = w * len6;
+    return out;
+  }
+  function dot6(a, b) {
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
+  }
+  function lerp5(out, a, b, t) {
+    var ax = a[0];
+    var ay = a[1];
+    var az = a[2];
+    var aw = a[3];
+    out[0] = ax + t * (b[0] - ax);
+    out[1] = ay + t * (b[1] - ay);
+    out[2] = az + t * (b[2] - az);
+    out[3] = aw + t * (b[3] - aw);
+    return out;
+  }
+  function exactEquals7(a, b) {
+    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
+  }
+  function equals7(a, b) {
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
+    var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
+    return Math.abs(a0 - b0) <= EPSILON2 * Math.max(1, Math.abs(a0), Math.abs(b0)) && Math.abs(a1 - b1) <= EPSILON2 * Math.max(1, Math.abs(a1), Math.abs(b1)) && Math.abs(a2 - b2) <= EPSILON2 * Math.max(1, Math.abs(a2), Math.abs(b2)) && Math.abs(a3 - b3) <= EPSILON2 * Math.max(1, Math.abs(a3), Math.abs(b3));
+  }
+  var forEach5 = function() {
+    var vec = create9();
+    return function(a, stride, offset, count, fn, arg) {
+      var i, l;
+      if (!stride) {
+        stride = 4;
+      }
+      if (!offset) {
+        offset = 0;
+      }
+      if (count) {
+        l = Math.min(count * stride + offset, a.length);
+      } else {
+        l = a.length;
+      }
+      for (i = offset; i < l; i += stride) {
+        vec[0] = a[i];
+        vec[1] = a[i + 1];
+        vec[2] = a[i + 2];
+        vec[3] = a[i + 3];
+        fn(vec, vec, arg);
+        a[i] = vec[0];
+        a[i + 1] = vec[1];
+        a[i + 2] = vec[2];
+        a[i + 3] = vec[3];
+      }
+      return a;
+    };
+  }();
+
+  // node_modules/gl-matrix/esm/quat.js
+  function create10() {
+    var out = new ARRAY_TYPE2(4);
+    if (ARRAY_TYPE2 != Float32Array) {
+      out[0] = 0;
+      out[1] = 0;
+      out[2] = 0;
+    }
+    out[3] = 1;
+    return out;
+  }
+  function identity4(out) {
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 1;
+    return out;
+  }
+  function setAxisAngle2(out, axis, rad) {
+    rad = rad * 0.5;
+    var s = Math.sin(rad);
+    out[0] = s * axis[0];
+    out[1] = s * axis[1];
+    out[2] = s * axis[2];
+    out[3] = Math.cos(rad);
+    return out;
+  }
+  function getAxisAngle2(out_axis, q) {
+    var rad = Math.acos(q[3]) * 2;
+    var s = Math.sin(rad / 2);
+    if (s > EPSILON2) {
+      out_axis[0] = q[0] / s;
+      out_axis[1] = q[1] / s;
+      out_axis[2] = q[2] / s;
+    } else {
+      out_axis[0] = 1;
+      out_axis[1] = 0;
+      out_axis[2] = 0;
+    }
+    return rad;
+  }
+  function getAngle2(a, b) {
+    var dotproduct = dot7(a, b);
+    return Math.acos(2 * dotproduct * dotproduct - 1);
+  }
+  function multiply6(out, a, b) {
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3];
+    var bx = b[0], by = b[1], bz = b[2], bw = b[3];
+    out[0] = ax * bw + aw * bx + ay * bz - az * by;
+    out[1] = ay * bw + aw * by + az * bx - ax * bz;
+    out[2] = az * bw + aw * bz + ax * by - ay * bx;
+    out[3] = aw * bw - ax * bx - ay * by - az * bz;
+    return out;
+  }
+  function rotateX4(out, a, rad) {
+    rad *= 0.5;
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3];
+    var bx = Math.sin(rad), bw = Math.cos(rad);
+    out[0] = ax * bw + aw * bx;
+    out[1] = ay * bw + az * bx;
+    out[2] = az * bw - ay * bx;
+    out[3] = aw * bw - ax * bx;
+    return out;
+  }
+  function rotateY4(out, a, rad) {
+    rad *= 0.5;
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3];
+    var by = Math.sin(rad), bw = Math.cos(rad);
+    out[0] = ax * bw - az * by;
+    out[1] = ay * bw + aw * by;
+    out[2] = az * bw + ax * by;
+    out[3] = aw * bw - ay * by;
+    return out;
+  }
+  function rotateZ4(out, a, rad) {
+    rad *= 0.5;
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3];
+    var bz = Math.sin(rad), bw = Math.cos(rad);
+    out[0] = ax * bw + ay * bz;
+    out[1] = ay * bw - ax * bz;
+    out[2] = az * bw + aw * bz;
+    out[3] = aw * bw - az * bz;
+    return out;
+  }
+  function calculateW2(out, a) {
+    var x = a[0], y = a[1], z = a[2];
+    out[0] = x;
+    out[1] = y;
+    out[2] = z;
+    out[3] = Math.sqrt(Math.abs(1 - x * x - y * y - z * z));
+    return out;
+  }
+  function exp2(out, a) {
+    var x = a[0], y = a[1], z = a[2], w = a[3];
+    var r = Math.sqrt(x * x + y * y + z * z);
+    var et = Math.exp(w);
+    var s = r > 0 ? et * Math.sin(r) / r : 0;
+    out[0] = x * s;
+    out[1] = y * s;
+    out[2] = z * s;
+    out[3] = et * Math.cos(r);
+    return out;
+  }
+  function ln2(out, a) {
+    var x = a[0], y = a[1], z = a[2], w = a[3];
+    var r = Math.sqrt(x * x + y * y + z * z);
+    var t = r > 0 ? Math.atan2(r, w) / r : 0;
+    out[0] = x * t;
+    out[1] = y * t;
+    out[2] = z * t;
+    out[3] = 0.5 * Math.log(x * x + y * y + z * z + w * w);
+    return out;
+  }
+  function pow2(out, a, b) {
+    ln2(out, a);
+    scale8(out, out, b);
+    exp2(out, out);
+    return out;
+  }
+  function slerp2(out, a, b, t) {
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3];
+    var bx = b[0], by = b[1], bz = b[2], bw = b[3];
+    var omega, cosom, sinom, scale0, scale1;
+    cosom = ax * bx + ay * by + az * bz + aw * bw;
+    if (cosom < 0) {
+      cosom = -cosom;
+      bx = -bx;
+      by = -by;
+      bz = -bz;
+      bw = -bw;
+    }
+    if (1 - cosom > EPSILON2) {
+      omega = Math.acos(cosom);
+      sinom = Math.sin(omega);
+      scale0 = Math.sin((1 - t) * omega) / sinom;
+      scale1 = Math.sin(t * omega) / sinom;
+    } else {
+      scale0 = 1 - t;
+      scale1 = t;
+    }
+    out[0] = scale0 * ax + scale1 * bx;
+    out[1] = scale0 * ay + scale1 * by;
+    out[2] = scale0 * az + scale1 * bz;
+    out[3] = scale0 * aw + scale1 * bw;
+    return out;
+  }
+  function random4(out) {
+    var u1 = RANDOM2();
+    var u2 = RANDOM2();
+    var u3 = RANDOM2();
+    var sqrt1MinusU1 = Math.sqrt(1 - u1);
+    var sqrtU1 = Math.sqrt(u1);
+    out[0] = sqrt1MinusU1 * Math.sin(2 * Math.PI * u2);
+    out[1] = sqrt1MinusU1 * Math.cos(2 * Math.PI * u2);
+    out[2] = sqrtU1 * Math.sin(2 * Math.PI * u3);
+    out[3] = sqrtU1 * Math.cos(2 * Math.PI * u3);
+    return out;
+  }
+  function invert4(out, a) {
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
+    var dot8 = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
+    var invDot = dot8 ? 1 / dot8 : 0;
+    out[0] = -a0 * invDot;
+    out[1] = -a1 * invDot;
+    out[2] = -a2 * invDot;
+    out[3] = a3 * invDot;
+    return out;
+  }
+  function conjugate2(out, a) {
+    out[0] = -a[0];
+    out[1] = -a[1];
+    out[2] = -a[2];
+    out[3] = a[3];
+    return out;
+  }
+  function fromMat32(out, m) {
+    var fTrace = m[0] + m[4] + m[8];
+    var fRoot;
+    if (fTrace > 0) {
+      fRoot = Math.sqrt(fTrace + 1);
+      out[3] = 0.5 * fRoot;
+      fRoot = 0.5 / fRoot;
+      out[0] = (m[5] - m[7]) * fRoot;
+      out[1] = (m[6] - m[2]) * fRoot;
+      out[2] = (m[1] - m[3]) * fRoot;
+    } else {
+      var i = 0;
+      if (m[4] > m[0])
+        i = 1;
+      if (m[8] > m[i * 3 + i])
+        i = 2;
+      var j = (i + 1) % 3;
+      var k = (i + 2) % 3;
+      fRoot = Math.sqrt(m[i * 3 + i] - m[j * 3 + j] - m[k * 3 + k] + 1);
+      out[i] = 0.5 * fRoot;
+      fRoot = 0.5 / fRoot;
+      out[3] = (m[j * 3 + k] - m[k * 3 + j]) * fRoot;
+      out[j] = (m[j * 3 + i] + m[i * 3 + j]) * fRoot;
+      out[k] = (m[k * 3 + i] + m[i * 3 + k]) * fRoot;
+    }
+    return out;
+  }
+  function fromEuler2(out, x, y, z) {
+    var halfToRad = 0.5 * Math.PI / 180;
+    x *= halfToRad;
+    y *= halfToRad;
+    z *= halfToRad;
+    var sx = Math.sin(x);
+    var cx = Math.cos(x);
+    var sy = Math.sin(y);
+    var cy = Math.cos(y);
+    var sz = Math.sin(z);
+    var cz = Math.cos(z);
+    out[0] = sx * cy * cz - cx * sy * sz;
+    out[1] = cx * sy * cz + sx * cy * sz;
+    out[2] = cx * cy * sz - sx * sy * cz;
+    out[3] = cx * cy * cz + sx * sy * sz;
+    return out;
+  }
+  function str6(a) {
+    return "quat(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
+  }
+  var clone8 = clone7;
+  var fromValues9 = fromValues8;
+  var copy8 = copy7;
+  var set8 = set7;
+  var add8 = add7;
+  var mul6 = multiply6;
+  var scale8 = scale7;
+  var dot7 = dot6;
+  var lerp6 = lerp5;
+  var length7 = length6;
+  var len5 = length7;
+  var squaredLength6 = squaredLength5;
+  var sqrLen4 = squaredLength6;
+  var normalize7 = normalize6;
+  var exactEquals8 = exactEquals7;
+  var equals8 = equals7;
+  var rotationTo2 = function() {
+    var tmpvec3 = create8();
+    var xUnitVec3 = fromValues7(1, 0, 0);
+    var yUnitVec3 = fromValues7(0, 1, 0);
+    return function(out, a, b) {
+      var dot8 = dot5(a, b);
+      if (dot8 < -0.999999) {
+        cross3(tmpvec3, xUnitVec3, a);
+        if (len4(tmpvec3) < 1e-6)
+          cross3(tmpvec3, yUnitVec3, a);
+        normalize5(tmpvec3, tmpvec3);
+        setAxisAngle2(out, tmpvec3, Math.PI);
+        return out;
+      } else if (dot8 > 0.999999) {
+        out[0] = 0;
+        out[1] = 0;
+        out[2] = 0;
+        out[3] = 1;
+        return out;
+      } else {
+        cross3(tmpvec3, a, b);
+        out[0] = tmpvec3[0];
+        out[1] = tmpvec3[1];
+        out[2] = tmpvec3[2];
+        out[3] = 1 + dot8;
+        return normalize7(out, out);
+      }
+    };
+  }();
+  var sqlerp2 = function() {
+    var temp1 = create10();
+    var temp2 = create10();
+    return function(out, a, b, c, d, t) {
+      slerp2(temp1, a, d, t);
+      slerp2(temp2, b, c, t);
+      slerp2(out, temp1, temp2, 2 * t * (1 - t));
+      return out;
+    };
+  }();
+  var setAxes2 = function() {
+    var matr = create7();
+    return function(out, view, right, up) {
+      matr[0] = right[0];
+      matr[3] = right[1];
+      matr[6] = right[2];
+      matr[1] = up[0];
+      matr[4] = up[1];
+      matr[7] = up[2];
+      matr[2] = -view[0];
+      matr[5] = -view[1];
+      matr[8] = -view[2];
+      return normalize7(out, fromMat32(out, matr));
+    };
+  }();
+
+  // white-dwarf/ecsy/src/Utils.js
+  function queryKey2(Components) {
+    var ids = [];
+    for (var n = 0; n < Components.length; n++) {
+      var T = Components[n];
+      if (!componentRegistered2(T)) {
+        throw new Error(`Tried to create a query with an unregistered component`);
+      }
+      if (typeof T === "object") {
+        var operator = T.operator === "not" ? "!" : T.operator;
+        ids.push(operator + T.Component._typeId);
+      } else {
+        ids.push(T._typeId);
+      }
+    }
+    return ids.sort().join("-");
+  }
+  var hasWindow2 = typeof window !== "undefined";
+  var now2 = hasWindow2 && typeof window.performance !== "undefined" ? performance.now.bind(performance) : Date.now.bind(Date);
+  function componentRegistered2(T) {
+    return typeof T === "object" && T.Component._typeId !== void 0 || T.isComponent && T._typeId !== void 0;
+  }
+
+  // white-dwarf/ecsy/src/EventDispatcher.js
+  var EventDispatcher2 = class {
+    constructor() {
+      this._listeners = {};
+      this.stats = {
+        fired: 0,
+        handled: 0
+      };
+    }
+    addEventListener(eventName, listener) {
+      let listeners = this._listeners;
+      if (listeners[eventName] === void 0) {
+        listeners[eventName] = [];
+      }
+      if (listeners[eventName].indexOf(listener) === -1) {
+        listeners[eventName].push(listener);
+      }
+    }
+    hasEventListener(eventName, listener) {
+      return this._listeners[eventName] !== void 0 && this._listeners[eventName].indexOf(listener) !== -1;
+    }
+    removeEventListener(eventName, listener) {
+      var listenerArray = this._listeners[eventName];
+      if (listenerArray !== void 0) {
+        var index = listenerArray.indexOf(listener);
+        if (index !== -1) {
+          listenerArray.splice(index, 1);
+        }
+      }
+    }
+    dispatchEvent(eventName, entity, component) {
+      this.stats.fired++;
+      var listenerArray = this._listeners[eventName];
+      if (listenerArray !== void 0) {
+        var array = listenerArray.slice(0);
+        for (var i = 0; i < array.length; i++) {
+          array[i].call(this, entity, component);
+        }
+      }
+    }
+    resetCounters() {
+      this.stats.fired = this.stats.handled = 0;
+    }
+  };
+
+  // white-dwarf/ecsy/src/Query.js
+  var Query2 = class {
+    constructor(Components, manager) {
+      this.Components = [];
+      this.NotComponents = [];
+      Components.forEach((component) => {
+        if (typeof component === "object") {
+          this.NotComponents.push(component.Component);
+        } else {
+          this.Components.push(component);
+        }
+      });
+      if (this.Components.length === 0) {
+        throw new Error("Can't create a query without components");
+      }
+      this.entities = [];
+      this.eventDispatcher = new EventDispatcher2();
+      this.reactive = false;
+      this.key = queryKey2(Components);
+      for (var i = 0; i < manager._entities.length; i++) {
+        var entity = manager._entities[i];
+        if (this.match(entity)) {
+          entity.queries.push(this);
+          this.entities.push(entity);
+        }
+      }
+    }
+    addEntity(entity) {
+      entity.queries.push(this);
+      this.entities.push(entity);
+      this.eventDispatcher.dispatchEvent(Query2.prototype.ENTITY_ADDED, entity);
+    }
+    removeEntity(entity) {
+      let index = this.entities.indexOf(entity);
+      if (~index) {
+        this.entities.splice(index, 1);
+        index = entity.queries.indexOf(this);
+        entity.queries.splice(index, 1);
+        this.eventDispatcher.dispatchEvent(
+          Query2.prototype.ENTITY_REMOVED,
+          entity
+        );
+      }
+    }
+    match(entity) {
+      return entity.hasAllComponents(this.Components) && !entity.hasAnyComponents(this.NotComponents);
+    }
+    toJSON() {
+      return {
+        key: this.key,
+        reactive: this.reactive,
+        components: {
+          included: this.Components.map((C) => C.name),
+          not: this.NotComponents.map((C) => C.name)
+        },
+        numEntities: this.entities.length
+      };
+    }
+    stats() {
+      return {
+        numComponents: this.Components.length,
+        numEntities: this.entities.length
+      };
+    }
+  };
+  Query2.prototype.ENTITY_ADDED = "Query#ENTITY_ADDED";
+  Query2.prototype.ENTITY_REMOVED = "Query#ENTITY_REMOVED";
+  Query2.prototype.COMPONENT_CHANGED = "Query#COMPONENT_CHANGED";
+
+  // white-dwarf/ecsy/src/Component.js
+  var import_events3 = __toESM(require_events());
+  var Component2 = class {
+    constructor(props) {
+      if (props !== false) {
+        const schema = this.constructor.schema;
+        for (const key in schema) {
+          if (props && props.hasOwnProperty(key)) {
+            this[key] = props[key];
+          } else {
+            const schemaProp = schema[key];
+            if (schemaProp.hasOwnProperty("default")) {
+              this[key] = schemaProp.type.clone(schemaProp.default);
+            } else {
+              const type = schemaProp.type;
+              this[key] = type.clone(type.default);
+            }
+          }
+        }
+        if (props !== void 0) {
+          this.checkUndefinedAttributes(props);
+        }
+      }
+      this.eventEmitter = new import_events3.default();
+      this._pool = null;
+      this.onInspector = null;
+      this.useDefaultInspector = true;
+    }
+    copy(source) {
+      const schema = this.constructor.schema;
+      for (const key in schema) {
+        const prop = schema[key];
+        if (source.hasOwnProperty(key)) {
+          this[key] = prop.type.copy(source[key], this[key]);
+        }
+      }
+      if (true) {
+        this.checkUndefinedAttributes(source);
+      }
+      return this;
+    }
+    clone() {
+      return new this.constructor().copy(this);
+    }
+    reset() {
+      const schema = this.constructor.schema;
+      for (const key in schema) {
+        const schemaProp = schema[key];
+        if (schemaProp.hasOwnProperty("default")) {
+          this[key] = schemaProp.type.copy(schemaProp.default, this[key]);
+        } else {
+          const type = schemaProp.type;
+          this[key] = type.copy(type.default, this[key]);
+        }
+      }
+    }
+    dispose() {
+      if (this._pool) {
+        this._pool.release(this);
+      }
+    }
+    getName() {
+      return this.constructor.getName();
+    }
+    checkUndefinedAttributes(src) {
+      const schema = this.constructor.schema;
+      Object.keys(src).forEach((srcKey) => {
+        if (!schema.hasOwnProperty(srcKey)) {
+          console.warn(
+            `Trying to set attribute '${srcKey}' not defined in the '${this.constructor.name}' schema. Please fix the schema, the attribute value won't be set`
+          );
+        }
+      });
+    }
+  };
+  Component2.schema = {};
+  Component2.isComponent = true;
+  Component2.getName = function() {
+    return this.displayName || this.name;
+  };
+
+  // white-dwarf/ecsy/src/SystemStateComponent.js
+  var SystemStateComponent2 = class extends Component2 {
+  };
+  SystemStateComponent2.isSystemStateComponent = true;
+
+  // white-dwarf/ecsy/src/System.js
+  var System2 = class {
+    canExecute() {
+      if (this._mandatoryQueries.length === 0)
+        return true;
+      for (let i = 0; i < this._mandatoryQueries.length; i++) {
+        var query = this._mandatoryQueries[i];
+        if (query.entities.length === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+    getName() {
+      return this.constructor.getName();
+    }
+    constructor(world, attributes) {
+      this.world = world;
+      this.enabled = true;
+      this._queries = {};
+      this.queries = {};
+      this.priority = 0;
+      this.executeTime = 0;
+      if (attributes && attributes.priority) {
+        this.priority = attributes.priority;
+      }
+      this._mandatoryQueries = [];
+      this.initialized = true;
+      if (this.constructor.queries) {
+        for (var queryName in this.constructor.queries) {
+          var queryConfig = this.constructor.queries[queryName];
+          var Components = queryConfig.components;
+          if (!Components || Components.length === 0) {
+            throw new Error("'components' attribute can't be empty in a query");
+          }
+          let unregisteredComponents = Components.filter(
+            (Component3) => !componentRegistered2(Component3)
+          );
+          if (unregisteredComponents.length > 0) {
+            throw new Error(
+              `Tried to create a query '${this.constructor.name}.${queryName}' with unregistered components: [${unregisteredComponents.map((c) => c.getName()).join(", ")}]`
+            );
+          }
+          var query = this.world.entityManager.queryComponents(Components);
+          this._queries[queryName] = query;
+          if (queryConfig.mandatory === true) {
+            this._mandatoryQueries.push(query);
+          }
+          this.queries[queryName] = {
+            results: query.entities
+          };
+          var validEvents = ["added", "removed", "changed"];
+          const eventMapping = {
+            added: Query2.prototype.ENTITY_ADDED,
+            removed: Query2.prototype.ENTITY_REMOVED,
+            changed: Query2.prototype.COMPONENT_CHANGED
+          };
+          if (queryConfig.listen) {
+            validEvents.forEach((eventName) => {
+              if (!this.execute) {
+                console.warn(
+                  `System '${this.getName()}' has defined listen events (${validEvents.join(
+                    ", "
+                  )}) for query '${queryName}' but it does not implement the 'execute' method.`
+                );
+              }
+              if (queryConfig.listen[eventName]) {
+                let event = queryConfig.listen[eventName];
+                if (eventName === "changed") {
+                  query.reactive = true;
+                  if (event === true) {
+                    let eventList = this.queries[queryName][eventName] = [];
+                    query.eventDispatcher.addEventListener(
+                      Query2.prototype.COMPONENT_CHANGED,
+                      (entity) => {
+                        if (eventList.indexOf(entity) === -1) {
+                          eventList.push(entity);
+                        }
+                      }
+                    );
+                  } else if (Array.isArray(event)) {
+                    let eventList = this.queries[queryName][eventName] = [];
+                    query.eventDispatcher.addEventListener(
+                      Query2.prototype.COMPONENT_CHANGED,
+                      (entity, changedComponent) => {
+                        if (event.indexOf(changedComponent.constructor) !== -1 && eventList.indexOf(entity) === -1) {
+                          eventList.push(entity);
+                        }
+                      }
+                    );
+                  } else {
+                  }
+                } else {
+                  let eventList = this.queries[queryName][eventName] = [];
+                  query.eventDispatcher.addEventListener(
+                    eventMapping[eventName],
+                    (entity) => {
+                      if (eventList.indexOf(entity) === -1)
+                        eventList.push(entity);
+                    }
+                  );
+                }
+              }
+            });
+          }
+        }
+      }
+    }
+    stop() {
+      this.executeTime = 0;
+      this.enabled = false;
+    }
+    play() {
+      this.enabled = true;
+    }
+    clearEvents() {
+      for (let queryName in this.queries) {
+        var query = this.queries[queryName];
+        if (query.added) {
+          query.added.length = 0;
+        }
+        if (query.removed) {
+          query.removed.length = 0;
+        }
+        if (query.changed) {
+          if (Array.isArray(query.changed)) {
+            query.changed.length = 0;
+          } else {
+            for (let name in query.changed) {
+              query.changed[name].length = 0;
+            }
+          }
+        }
+      }
+    }
+    toJSON() {
+      var json = {
+        name: this.getName(),
+        enabled: this.enabled,
+        executeTime: this.executeTime,
+        priority: this.priority,
+        queries: {}
+      };
+      if (this.constructor.queries) {
+        var queries = this.constructor.queries;
+        for (let queryName in queries) {
+          let query = this.queries[queryName];
+          let queryDefinition = queries[queryName];
+          let jsonQuery = json.queries[queryName] = {
+            key: this._queries[queryName].key
+          };
+          jsonQuery.mandatory = queryDefinition.mandatory === true;
+          jsonQuery.reactive = queryDefinition.listen && (queryDefinition.listen.added === true || queryDefinition.listen.removed === true || queryDefinition.listen.changed === true || Array.isArray(queryDefinition.listen.changed));
+          if (jsonQuery.reactive) {
+            jsonQuery.listen = {};
+            const methods = ["added", "removed", "changed"];
+            methods.forEach((method) => {
+              if (query[method]) {
+                jsonQuery.listen[method] = {
+                  entities: query[method].length
+                };
+              }
+            });
+          }
+        }
+      }
+      return json;
+    }
+  };
+  System2.isSystem = true;
+  System2.getName = function() {
+    return this.displayName || this.name;
+  };
+
+  // white-dwarf/ecsy/src/TagComponent.js
+  var TagComponent2 = class extends Component2 {
+    constructor() {
+      super(false);
+    }
+  };
+  TagComponent2.isTagComponent = true;
+
+  // white-dwarf/ecsy/src/Types.js
+  var copyValue2 = (src) => src;
+  var cloneValue2 = (src) => src;
+  var copyArray2 = (src, dest) => {
+    if (!src) {
+      return src;
+    }
+    if (!dest) {
+      return src.slice();
+    }
+    dest.length = 0;
+    for (let i = 0; i < src.length; i++) {
+      dest.push(src[i]);
+    }
+    return dest;
+  };
+  var cloneArray2 = (src) => src && src.slice();
+  var copyJSON2 = (src) => JSON.parse(JSON.stringify(src));
+  var cloneJSON2 = (src) => JSON.parse(JSON.stringify(src));
+  function createType2(typeDefinition) {
+    var mandatoryProperties = ["name", "default", "copy", "clone"];
+    var undefinedProperties = mandatoryProperties.filter((p) => {
+      return !typeDefinition.hasOwnProperty(p);
+    });
+    if (undefinedProperties.length > 0) {
+      throw new Error(
+        `createType expects a type definition with the following properties: ${undefinedProperties.join(
+          ", "
+        )}`
+      );
+    }
+    typeDefinition.isType = true;
+    return typeDefinition;
+  }
+  var Types3 = {
+    Number: createType2({
+      name: "Number",
+      default: 0,
+      copy: copyValue2,
+      clone: cloneValue2
+    }),
+    Boolean: createType2({
+      name: "Boolean",
+      default: false,
+      copy: copyValue2,
+      clone: cloneValue2
+    }),
+    String: createType2({
+      name: "String",
+      default: "",
+      copy: copyValue2,
+      clone: cloneValue2
+    }),
+    Array: createType2({
+      name: "Array",
+      default: [],
+      copy: copyArray2,
+      clone: cloneArray2
+    }),
+    Ref: createType2({
+      name: "Ref",
+      default: void 0,
+      copy: copyValue2,
+      clone: cloneValue2
+    }),
+    JSON: createType2({
+      name: "JSON",
+      default: null,
+      copy: copyJSON2,
+      clone: cloneJSON2
+    })
+  };
+
+  // white-dwarf/ecsy/src/RemoteDevTools/utils.js
+  function generateId2(length8) {
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length8; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+  function injectScript2(src, onLoad) {
+    var script2 = document.createElement("script");
+    script2.src = src;
+    script2.onload = onLoad;
+    (document.head || document.documentElement).appendChild(script2);
+  }
+
+  // white-dwarf/ecsy/src/RemoteDevTools/index.js
+  function hookConsoleAndErrors2(connection2) {
+    var wrapFunctions = ["error", "warning", "log"];
+    wrapFunctions.forEach((key) => {
+      if (typeof console[key] === "function") {
+        var fn = console[key].bind(console);
+        console[key] = (...args) => {
+          connection2.send({
+            method: "console",
+            type: key,
+            args: JSON.stringify(args)
+          });
+          return fn.apply(null, args);
+        };
+      }
+    });
+    window.addEventListener("error", (error) => {
+      connection2.send({
+        method: "error",
+        error: JSON.stringify({
+          message: error.error.message,
+          stack: error.error.stack
+        })
+      });
+    });
+  }
+  function includeRemoteIdHTML2(remoteId2) {
+    let infoDiv2 = document.createElement("div");
+    infoDiv2.style.cssText = `
+    align-items: center;
+    background-color: #333;
+    color: #aaa;
+    display:flex;
+    font-family: Arial;
+    font-size: 1.1em;
+    height: 40px;
+    justify-content: center;
+    left: 0;
+    opacity: 0.9;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+  `;
+    infoDiv2.innerHTML = `Open ECSY devtools to connect to this page using the code:&nbsp;<b style="color: #fff">${remoteId2}</b>&nbsp;<button onClick="generateNewCode()">Generate new code</button>`;
+    document.body.appendChild(infoDiv2);
+    return infoDiv2;
+  }
+  function enableRemoteDevtools2(remoteId) {
+    if (!hasWindow2) {
+      console.warn("Remote devtools not available outside the browser");
+      return;
+    }
+    window.generateNewCode = () => {
+      window.localStorage.clear();
+      remoteId = generateId2(6);
+      window.localStorage.setItem("ecsyRemoteId", remoteId);
+      window.location.reload(false);
+    };
+    remoteId = remoteId || window.localStorage.getItem("ecsyRemoteId");
+    if (!remoteId) {
+      remoteId = generateId2(6);
+      window.localStorage.setItem("ecsyRemoteId", remoteId);
+    }
+    let infoDiv = includeRemoteIdHTML2(remoteId);
+    window.__ECSY_REMOTE_DEVTOOLS_INJECTED = true;
+    window.__ECSY_REMOTE_DEVTOOLS = {};
+    let Version = "";
+    let worldsBeforeLoading = [];
+    let onWorldCreated = (e) => {
+      var world = e.detail.world;
+      Version = e.detail.version;
+      worldsBeforeLoading.push(world);
+    };
+    window.addEventListener("ecsy-world-created", onWorldCreated);
+    let onLoaded = () => {
+      var peer = new Peer(remoteId, {
+        host: "peerjs.ecsy.io",
+        secure: true,
+        port: 443,
+        config: {
+          iceServers: [
+            { url: "stun:stun.l.google.com:19302" },
+            { url: "stun:stun1.l.google.com:19302" },
+            { url: "stun:stun2.l.google.com:19302" },
+            { url: "stun:stun3.l.google.com:19302" },
+            { url: "stun:stun4.l.google.com:19302" }
+          ]
+        },
+        debug: 3
+      });
+      peer.on("open", () => {
+        peer.on("connection", (connection) => {
+          window.__ECSY_REMOTE_DEVTOOLS.connection = connection;
+          connection.on("open", function() {
+            infoDiv.innerHTML = "Connected";
+            connection.on("data", function(data) {
+              if (data.type === "init") {
+                var script = document.createElement("script");
+                script.setAttribute("type", "text/javascript");
+                script.onload = () => {
+                  script.parentNode.removeChild(script);
+                  window.removeEventListener(
+                    "ecsy-world-created",
+                    onWorldCreated
+                  );
+                  worldsBeforeLoading.forEach((world) => {
+                    var event = new CustomEvent("ecsy-world-created", {
+                      detail: { world, version: Version }
+                    });
+                    window.dispatchEvent(event);
+                  });
+                };
+                script.innerHTML = data.script;
+                (document.head || document.documentElement).appendChild(script);
+                script.onload();
+                hookConsoleAndErrors2(connection);
+              } else if (data.type === "executeScript") {
+                let value = eval(data.script);
+                if (data.returnEval) {
+                  connection.send({
+                    method: "evalReturn",
+                    value
+                  });
+                }
+              }
+            });
+          });
+        });
+      });
+    };
+    injectScript2(
+      "https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js",
+      onLoaded
+    );
+  }
+  if (hasWindow2) {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("enable-remote-devtools")) {
+      enableRemoteDevtools2();
+    }
+  }
+
+  // src/DataComponent/SunLightSpinData.ts
+  var SunLightSpinData = class extends Component2 {
+    constructor() {
+      super(...arguments);
+      this.speed = 0.01;
+    }
+  };
+  SunLightSpinData.schema = {
+    speed: {
+      type: Types3.Number,
+      default: 0.01
+    }
+  };
+  SunLightSpinData = __decorateClass([
+    IComponent.register
+  ], SunLightSpinData);
+
+  // src/Systems/SunLightSpinSystem.ts
+  var SunLightSpinSystem = class extends System2 {
+    execute(delta, time) {
+      this.queries.sunLightEntities.results.forEach((entity) => {
+        const transformData = entity.getMutableComponent(
+          TransformData3D
+        );
+        const sunLightSpinData = entity.getComponent(
+          SunLightSpinData
+        );
+        const spinQuat = quat_exports2.rotateY(
+          quat_exports2.create(),
+          quat_exports2.create(),
+          sunLightSpinData.speed * delta
+        );
+        quat_exports2.multiply(
+          transformData.rotation.value,
+          transformData.rotation.value,
+          spinQuat
+        );
+      });
+    }
+  };
+  SunLightSpinSystem.queries = {
+    sunLightEntities: {
+      components: [TransformData3D, SunLightSpinData]
+    }
+  };
+
   // src/index.ts
   var main = () => {
     systemContext.coreSetup = () => {
@@ -7319,7 +8607,11 @@
         );
         WorldSerializer.deserializeWorld(mainWorld, worldObject);
       }
+      editorControlContext.setControlMode(0 /* View */);
       mainWorld.registerSystem(MainCameraInitSystem);
+      mainWorld.registerSystem(Cam3DDragSystem, {
+        mainCanvas: coreRenderContext.mainCanvas
+      }).registerSystem(SunLightSpinSystem);
     });
     systemContext.editorStart = () => {
       mainWorld.createEntity("Editor Main Camera").addComponent(TransformData3D, {
