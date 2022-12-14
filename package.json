@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Fangjun-Zhou/cs559-webgl-texture#readme",
   "dependencies": {
     "esbuild": "^0.16.4",
+    "esbuild-plugin-glsl": "^1.1.0",
     "white-dwarf": "file:white-dwarf"
   }
 }

@@ -2,12 +2,134 @@
   "entities": [
     {
       "name": "Earth",
+      "id": 0,
+      "components": {
+        "TransformData3D": {
+          "position": {
+            "value": {
+              "0": 0,
+              "1": 0,
+              "2": 0
+            }
+          },
+          "rotation": {
+            "value": {
+              "0": 0,
+              "1": -0.6067768335342407,
+              "2": 0,
+              "3": -0.7948103547096252
+            }
+          },
+          "scale": {
+            "value": {
+              "0": 1,
+              "1": 1,
+              "2": 1
+            }
+          }
+        },
+        "MeshRenderData3D": {
+          "materialDesc": {
+            "fetchShader": true,
+            "attributes": ["vPosition", "vNormal", "vColor", "vTexCoord"],
+            "uniforms": ["uM", "uV", "uP", "uMV", "uMVn", "uMVP", "uDirLight"],
+            "textureSamplers": {
+              "tex1": "assets/1_earth_8k.jpg",
+              "tex2": "assets/water_8k.png"
+            },
+            "vertexSource": "shaders/phong-lit/phong-lit-vert.glsl",
+            "fragmentSource": "shaders/phong-lit/phong-lit-frag.glsl"
+          }
+        },
+        "IcosphereMeshGeneratorData": {
+          "radius": 5,
+          "subdivisions": 4,
+          "flatNormal": false
+        },
+        "SunLightSpinData": {
+          "speed": 1
+        }
+      }
+    },
+    {
+      "name": "Directional Light",
       "id": 1,
       "components": {
         "TransformData3D": {
           "position": {
             "value": {
               "0": 0,
+              "1": 0,
+              "2": 0
+            }
+          },
+          "rotation": {
+            "value": {
+              "0": 0,
+              "1": -0.1300455927848816,
+              "2": 0,
+              "3": -0.9915750026702881
+            }
+          },
+          "scale": {
+            "value": {
+              "0": 1,
+              "1": 1,
+              "2": 1
+            }
+          }
+        },
+        "DirectionalLightTag": {},
+        "SunLightSpinData": {
+          "speed": 0.2
+        }
+      }
+    },
+    {
+      "name": "Main Camera",
+      "id": 2,
+      "components": {
+        "TransformData3D": {
+          "position": {
+            "value": {
+              "0": 2.5693087577819824,
+              "1": 6.621569633483887,
+              "2": 14.6271390914917
+            }
+          },
+          "rotation": {
+            "value": {
+              "0": 0.023781973868608475,
+              "1": -0.9754291772842407,
+              "2": 0.1734706610441208,
+              "3": 0.13372743129730225
+            }
+          },
+          "scale": {
+            "value": {
+              "0": 1,
+              "1": 1,
+              "2": 1
+            }
+          }
+        },
+        "PerspectiveCameraData3D": {
+          "fov": 0.7853981633974483,
+          "aspect": 1.5809641532756489,
+          "near": 0.1,
+          "far": 1000
+        },
+        "MainCameraTag": {}
+      }
+    },
+    {
+      "name": "Moon",
+      "id": 4,
+      "components": {
+        "TransformData3D": {
+          "position": {
+            "value": {
+              "0": -10,
               "1": 0,
               "2": 0
             }
@@ -31,105 +153,21 @@
         "MeshRenderData3D": {
           "materialDesc": {
             "fetchShader": true,
-            "attributes": [
-              "vPosition",
-              "vNormal",
-              "vColor",
-              "vTexCoord"
-            ],
-            "uniforms": [
-              "uM",
-              "uV",
-              "uP",
-              "uMV",
-              "uMVn",
-              "uMVP",
-              "uDirLight"
-            ],
+            "attributes": ["vPosition", "vNormal", "vColor", "vTexCoord"],
+            "uniforms": ["uM", "uV", "uP", "uMV", "uMVn", "uMVP", "uDirLight"],
             "textureSamplers": {
-              "tex1": "assets/1_earth_8k.jpg",
-              "tex2": "assets/water_8k.png"
+              "tex1": "assets/lroc_color_poles_4k.jpg",
+              "tex2": "assets/lroc_color_poles_4k.jpg"
             },
             "vertexSource": "shaders/phong-lit/phong-lit-vert.glsl",
             "fragmentSource": "shaders/phong-lit/phong-lit-frag.glsl"
           }
         },
         "IcosphereMeshGeneratorData": {
-          "radius": 1,
-          "subdivisions": 4,
+          "radius": 0.5,
+          "subdivisions": 3,
           "flatNormal": false
         }
-      }
-    },
-    {
-      "name": "Directional Light",
-      "id": 2,
-      "components": {
-        "TransformData3D": {
-          "position": {
-            "value": {
-              "0": 0,
-              "1": 0,
-              "2": 0
-            }
-          },
-          "rotation": {
-            "value": {
-              "0": 0,
-              "1": 0,
-              "2": 0,
-              "3": 1
-            }
-          },
-          "scale": {
-            "value": {
-              "0": 1,
-              "1": 1,
-              "2": 1
-            }
-          }
-        },
-        "DirectionalLightTag": {},
-        "SunLightSpinData": {
-          "speed": 1
-        }
-      }
-    },
-    {
-      "name": "Main Camera",
-      "id": 4,
-      "components": {
-        "TransformData3D": {
-          "position": {
-            "value": {
-              "0": 0,
-              "1": 0,
-              "2": -5
-            }
-          },
-          "rotation": {
-            "value": {
-              "0": 0,
-              "1": 0,
-              "2": 0,
-              "3": 1
-            }
-          },
-          "scale": {
-            "value": {
-              "0": 1,
-              "1": 1,
-              "2": 1
-            }
-          }
-        },
-        "PerspectiveCameraData3D": {
-          "fov": 0.7853981633974483,
-          "aspect": 1,
-          "near": 0.1,
-          "far": 1000
-        },
-        "MainCameraInitTag": {}
       }
     }
   ]

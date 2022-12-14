@@ -5529,6 +5529,10 @@
         const tMVP = mat4_exports.create();
         mat4_exports.multiply(tMVP, tProjection, tMV);
         material.use(this.glContext);
+        this.glContext.bindBuffer(
+          this.glContext.ELEMENT_ARRAY_BUFFER,
+          meshBuffer.triangleIndicesBuffer
+        );
         this.glContext.uniformMatrix4fv(
           material.uniformLocations.uM,
           false,
