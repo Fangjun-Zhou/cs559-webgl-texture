@@ -118,7 +118,8 @@
           "aspect": 1.5809641532756489,
           "near": 0.1,
           "far": 1000
-        }
+        },
+        "MainCameraInitTag": {}
       }
     },
     {
